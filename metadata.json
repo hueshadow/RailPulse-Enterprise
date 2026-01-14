@@ -1,0 +1,9 @@
+{
+  "name": "RailPulse Enterprise",
+  "description": "Next-generation rail network management system featuring real-time monitoring, incident command, and field service operations.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
