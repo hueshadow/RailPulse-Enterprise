@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScreenType } from '../types';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface LayoutProps {
   currentScreen: ScreenType;
@@ -33,6 +35,7 @@ const NavItem = ({
 
 export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { t } = useTranslation();
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-rail-dark selection:bg-rail-primary selection:text-black">
@@ -55,17 +58,17 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
         </div>
 
         <nav className="flex-1 overflow-y-auto p-3 no-scrollbar">
-          <div className={`text-xs font-bold text-slate-500 uppercase mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>Operations</div>
-          <NavItem active={currentScreen === 'overview'} icon="dashboard" label={sidebarOpen ? "Network Overview" : ""} onClick={() => onScreenChange('overview')} />
-          <NavItem active={currentScreen === 'incident-command'} icon="e911_emergency" label={sidebarOpen ? "Incident Command" : ""} onClick={() => onScreenChange('incident-command')} />
-          <NavItem active={currentScreen === 'line-detail'} icon="alt_route" label={sidebarOpen ? "Line Detail" : ""} onClick={() => onScreenChange('line-detail')} />
-          <NavItem active={currentScreen === 'station-ops'} icon="domain" label={sidebarOpen ? "Station Ops" : ""} onClick={() => onScreenChange('station-ops')} />
-          
-          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>Analytics</div>
-          <NavItem active={currentScreen === 'forecasting'} icon="query_stats" label={sidebarOpen ? "Forecasting" : ""} onClick={() => onScreenChange('forecasting')} />
-          
-          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>Mobile</div>
-          <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? "Field Service" : ""} onClick={() => onScreenChange('field-service')} />
+          <div className={`text-xs font-bold text-slate-500 uppercase mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.operations')}</div>
+          <NavItem active={currentScreen === 'overview'} icon="dashboard" label={sidebarOpen ? t('nav.networkOverview') : ""} onClick={() => onScreenChange('overview')} />
+          <NavItem active={currentScreen === 'incident-command'} icon="e911_emergency" label={sidebarOpen ? t('nav.incidentCommand') : ""} onClick={() => onScreenChange('incident-command')} />
+          <NavItem active={currentScreen === 'line-detail'} icon="alt_route" label={sidebarOpen ? t('nav.lineDetail') : ""} onClick={() => onScreenChange('line-detail')} />
+          <NavItem active={currentScreen === 'station-ops'} icon="domain" label={sidebarOpen ? t('nav.stationOps') : ""} onClick={() => onScreenChange('station-ops')} />
+
+          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.analytics')}</div>
+          <NavItem active={currentScreen === 'forecasting'} icon="query_stats" label={sidebarOpen ? t('nav.forecasting') : ""} onClick={() => onScreenChange('forecasting')} />
+
+          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.mobile')}</div>
+          <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? t('nav.fieldService') : ""} onClick={() => onScreenChange('field-service')} />
         </nav>
 
         <div className="p-3 border-t border-rail-border">
@@ -83,8 +86,8 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
         {/* Dynamic Header */}
         <header className="h-16 border-b border-rail-border bg-rail-panel/50 backdrop-blur-md flex items-center justify-between px-6 z-40">
            <div className="flex items-center gap-4">
-             <h2 className="text-lg font-bold text-white capitalize">{currentScreen.replace('-', ' ')}</h2>
-             <span className="px-2 py-0.5 rounded bg-rail-success/20 text-rail-success border border-rail-success/30 text-[10px] font-bold">SYSTEM NORMAL</span>
+             <h2 className="text-lg font-bold text-white">{t(`screens.${currentScreen}`)}</h2>
+             <span className="px-2 py-0.5 rounded bg-rail-success/20 text-rail-success border border-rail-success/30 text-[10px] font-bold">{t('common.systemNormal')}</span>
            </div>
            
            <div className="flex items-center gap-6">
@@ -92,6 +95,8 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
                 <span>UTC 14:42:05</span>
                 <span className="text-rail-primary">OCT 24, 2023</span>
               </div>
+              <div className="h-6 w-px bg-white/10"></div>
+              <LanguageSwitcher />
               <div className="h-6 w-px bg-white/10"></div>
               <div className="flex items-center gap-3">
                  <button className="relative text-slate-400 hover:text-white">
