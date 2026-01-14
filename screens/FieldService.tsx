@@ -1,11 +1,119 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TaskBoard, TaskColumnData, Task } from '../components/TaskBoard/TaskBoard';
+
+// Mock task data for the kanban board
+const mockTaskColumns: TaskColumnData[] = [
+  {
+    id: 'pending',
+    title: 'Pending',
+    icon: 'pending',
+    color: 'primary',
+    tasks: [
+      {
+        id: 'WO-8924',
+        title: 'Signal Light Replacement',
+        description: 'Replace faulty signal light at junction',
+        priority: 'P2',
+        location: 'Sector 4A',
+        type: 'repair',
+        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+      },
+      {
+        id: 'WO-8925',
+        title: 'Track Inspection',
+        description: 'Routine track condition inspection',
+        priority: 'P3',
+        location: 'Line 2 South',
+        type: 'inspection',
+        createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
+      },
+    ],
+  },
+  {
+    id: 'in_progress',
+    title: 'In Progress',
+    icon: 'play_circle',
+    color: 'warning',
+    tasks: [
+      {
+        id: 'WO-8921',
+        title: 'Switch Motor Repair',
+        description: 'Operator reported intermittent failure. Error code E-404.',
+        priority: 'P1',
+        assignee: 'M. Kim',
+        location: 'Sector 7G, Track 4',
+        type: 'emergency',
+        createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000),
+      },
+      {
+        id: 'WO-8922',
+        title: 'Sensor Calibration',
+        description: 'Calibrate proximity sensors',
+        priority: 'P2',
+        assignee: 'A. Smith',
+        location: 'Yard B, Gate 3',
+        type: 'maintenance',
+        createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
+      },
+    ],
+  },
+  {
+    id: 'completed',
+    title: 'Completed',
+    icon: 'check_circle',
+    color: 'success',
+    tasks: [
+      {
+        id: 'WO-8919',
+        title: 'Escalator Belt Tension',
+        description: 'Adjusted belt tension to spec',
+        priority: 'P3',
+        assignee: 'J. Chen',
+        location: 'Station Central',
+        type: 'maintenance',
+        createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000),
+      },
+    ],
+  },
+];
 
 export const FieldService = () => {
-    const [tab, setTab] = useState<'inbox' | 'detail' | 'scanner'>('inbox');
+    const { t } = useTranslation();
+    const [tab, setTab] = useState<'inbox' | 'detail' | 'scanner' | 'kanban'>('inbox');
+    const [taskColumns, setTaskColumns] = useState(mockTaskColumns);
+
+    const handleTaskMove = (taskId: string, fromColumn: string, toColumn: string) => {
+      console.log(`Task ${taskId} moved from ${fromColumn} to ${toColumn}`);
+      // In a real app, this would sync with backend
+    };
 
     return (
-        <div className="flex justify-center h-full bg-[#0B1116] p-4">
-             {/* Mobile Frame */}
+        <div className="flex h-full bg-[#0B1116] p-4 gap-6">
+            {/* Task Board - Desktop View */}
+            <div className="flex-1 hidden lg:flex flex-col min-w-0">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h2 className="text-lg font-bold text-white">Task Board</h2>
+                  <p className="text-xs text-gray-400">Drag and drop to update task status</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 rounded-full bg-rail-primary/20 text-rail-primary text-xs font-medium">
+                    {taskColumns.reduce((acc, col) => acc + col.tasks.length, 0)} tasks
+                  </span>
+                </div>
+              </div>
+              <div className="flex-1 min-h-0">
+                <TaskBoard
+                  columns={taskColumns}
+                  onTaskMove={handleTaskMove}
+                  className="h-full"
+                />
+              </div>
+            </div>
+
+            {/* Mobile Frame */}
+            <div className="w-full lg:w-auto flex justify-center">
              <div className="w-full max-w-[380px] bg-[#101e22]/95 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/20 flex flex-col shadow-[0_25px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(37,192,244,0.1)] relative">
 
                 {/* Header */}
@@ -175,6 +283,7 @@ export const FieldService = () => {
                     </button>
                 </div>
              </div>
+            </div>
         </div>
     );
 };

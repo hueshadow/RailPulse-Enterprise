@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScreenType } from '../types';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { UserMenu } from './UserMenu';
 
 interface LayoutProps {
   currentScreen: ScreenType;
@@ -103,7 +104,7 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
                     <span className="material-symbols-outlined">notifications</span>
                     <span className="absolute top-1 right-1 size-2 bg-rail-danger rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
                  </button>
-                 <div className="size-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white border border-white/20 shadow-[0_0_12px_rgba(139,92,246,0.3)] ring-2 ring-white/10">JD</div>
+                 <UserMenu onNavigate={onScreenChange} />
               </div>
            </div>
         </header>

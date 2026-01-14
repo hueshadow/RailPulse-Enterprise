@@ -1,10 +1,11 @@
-export type ScreenType = 
-  | 'overview' 
-  | 'incident-command' 
-  | 'line-detail' 
-  | 'station-ops' 
-  | 'field-service' 
-  | 'forecasting';
+export type ScreenType =
+  | 'overview'
+  | 'incident-command'
+  | 'line-detail'
+  | 'station-ops'
+  | 'field-service'
+  | 'forecasting'
+  | 'user-center';
 
 export interface KPI {
   label: string;

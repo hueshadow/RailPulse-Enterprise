@@ -210,6 +210,82 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Login Background Grid Animation */
+        .login-bg-grid {
+            background-image:
+                linear-gradient(rgba(37, 192, 244, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 192, 244, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* User Avatar Ring */
+        .avatar-ring {
+            position: relative;
+            display: inline-block;
+        }
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25c0f4, #8b5cf6);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .avatar-ring::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25c0f4, #8b5cf6);
+            z-index: -2;
+            opacity: 0.2;
+            filter: blur(8px);
+        }
+
+        /* Ring Chart Glow Filters */
+        .ring-glow-primary { filter: drop-shadow(0 0 8px rgba(37, 192, 244, 0.5)); }
+        .ring-glow-danger { filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5)); }
+        .ring-glow-warning { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5)); }
+        .ring-glow-success { filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.5)); }
+
+        /* Draggable Card Styles */
+        .draggable-card {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .draggable-card:active {
+            cursor: grabbing;
+        }
+        .draggable-card.dragging {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(37, 192, 244, 0.15);
+            z-index: 100;
+        }
+
+        /* Drop Zone Styles */
+        .drop-zone {
+            border: 2px dashed transparent;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.active {
+            border-color: rgba(37, 192, 244, 0.5);
+            background: rgba(37, 192, 244, 0.05);
+        }
+
+        /* Line clamp utilities */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 <script type="importmap">
 {

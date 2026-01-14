@@ -1,6 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { EquipmentHealthCard, Equipment } from '../components/EquipmentHealthCard';
+import { RingChart } from '../components/charts/RingChart';
+
+// Mock equipment data
+const mockEquipment: Equipment[] = [
+  {
+    id: 'EQ001',
+    name: 'Escalator UP-1',
+    type: 'escalator',
+    operationHours: 28540,
+    failureCount: 2,
+    remainingLifespan: 72,
+    status: 'healthy',
+    lastMaintenance: new Date('2024-01-15'),
+    nextMaintenance: new Date('2024-02-15'),
+    location: 'Platform 1 North'
+  },
+  {
+    id: 'EQ002',
+    name: 'Escalator UP-2',
+    type: 'escalator',
+    operationHours: 31200,
+    failureCount: 5,
+    remainingLifespan: 45,
+    status: 'warning',
+    lastMaintenance: new Date('2024-01-10'),
+    nextMaintenance: new Date('2024-01-25'),
+    location: 'Platform 1 South'
+  },
+  {
+    id: 'EQ003',
+    name: 'Elevator A',
+    type: 'elevator',
+    operationHours: 15800,
+    failureCount: 0,
+    remainingLifespan: 88,
+    status: 'healthy',
+    lastMaintenance: new Date('2024-01-20'),
+    nextMaintenance: new Date('2024-03-20'),
+    location: 'Main Hall'
+  },
+  {
+    id: 'EQ004',
+    name: 'Gate Array East',
+    type: 'gate',
+    operationHours: 42100,
+    failureCount: 8,
+    remainingLifespan: 25,
+    status: 'critical',
+    lastMaintenance: new Date('2023-12-01'),
+    nextMaintenance: new Date('2024-01-10'),
+    location: 'East Entrance'
+  },
+];
 
 export const StationOps = () => {
+    const { t } = useTranslation();
+    const [showHealthPanel, setShowHealthPanel] = useState(true);
     return (
         <div className="flex h-full">
             {/* Sidebar */}
@@ -58,6 +115,29 @@ export const StationOps = () => {
                              </div>
                          </div>
                     </div>
+
+                    {/* Equipment Health Section */}
+                    <div className="mt-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
+                            <span className="w-1 h-3 bg-rail-primary rounded-full"></span>
+                            Equipment Health
+                          </h3>
+                          <button
+                            onClick={() => setShowHealthPanel(!showHealthPanel)}
+                            className="text-xs text-rail-primary hover:text-rail-primary/80"
+                          >
+                            {showHealthPanel ? 'Hide' : 'Show'}
+                          </button>
+                        </div>
+                        {showHealthPanel && (
+                          <div className="space-y-2">
+                            {mockEquipment.slice(0, 2).map(eq => (
+                              <EquipmentHealthCard key={eq.id} equipment={eq} compact />
+                            ))}
+                          </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -78,6 +158,14 @@ export const StationOps = () => {
                      <div className="glass-card p-4 rounded-xl min-w-[160px]">
                          <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Gate Throughput</div>
                          <div className="text-2xl font-bold text-white font-mono mt-1">42 <span className="text-sm text-rail-success">+5%</span></div>
+                     </div>
+                     {/* Overall Equipment Health Ring */}
+                     <div className="glass-card p-3 rounded-xl flex items-center gap-3">
+                         <RingChart value={68} size="sm" color="primary" />
+                         <div>
+                           <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Fleet Health</div>
+                           <div className="text-sm font-bold text-white mt-0.5">68% Avg</div>
+                         </div>
                      </div>
                  </div>
 
