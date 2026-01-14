@@ -27,9 +27,51 @@
                             success: '#10b981',
                         }
                     },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                        'glass-sm': '0 4px 16px 0 rgba(0, 0, 0, 0.25)',
+                        'glass-lg': '0 16px 48px 0 rgba(0, 0, 0, 0.45)',
+                        'glow-primary': '0 0 20px rgba(37, 192, 244, 0.3), 0 0 40px rgba(37, 192, 244, 0.1)',
+                        'glow-primary-sm': '0 0 10px rgba(37, 192, 244, 0.2)',
+                        'glow-danger': '0 0 20px rgba(239, 68, 68, 0.3)',
+                        'glow-warning': '0 0 20px rgba(245, 158, 11, 0.3)',
+                        'glow-success': '0 0 15px rgba(16, 185, 129, 0.25)',
+                    },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
+                        'glow-pulse-danger': 'glowPulseDanger 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-in': 'scaleIn 0.2s ease-out',
+                    },
+                    keyframes: {
+                        glowPulse: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(37, 192, 244, 0.2)' },
+                            '50%': { boxShadow: '0 0 30px rgba(37, 192, 244, 0.4)' },
+                        },
+                        glowPulseDanger: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(239, 68, 68, 0.2)' },
+                            '50%': { boxShadow: '0 0 30px rgba(239, 68, 68, 0.5)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                    },
                 }
             }
         }
@@ -40,7 +82,132 @@
         ::-webkit-scrollbar-track { background: #0B1116; }
         ::-webkit-scrollbar-thumb { background: #2a3b42; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #3a4b52; }
-        .glass { background: rgba(21, 30, 34, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(42, 59, 66, 0.6); }
+
+        /* Glass Base Surfaces */
+        .glass {
+            background: rgba(21, 30, 34, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(42, 59, 66, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-light {
+            background: rgba(21, 30, 34, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(42, 59, 66, 0.3);
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+        }
+        .glass-dark {
+            background: rgba(11, 17, 22, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(42, 59, 66, 0.6);
+            box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.45);
+        }
+        .glass-sidebar {
+            background: rgba(14, 19, 24, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(42, 59, 66, 0.4);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+        }
+        .glass-header {
+            background: rgba(21, 30, 34, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(42, 59, 66, 0.4);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(21, 30, 34, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(42, 59, 66, 0.5);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(21, 30, 34, 0.75);
+            border-color: rgba(42, 59, 66, 0.7);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .glass-card-primary {
+            background: rgba(21, 30, 34, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 192, 244, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(37, 192, 244, 0.1);
+        }
+        .glass-card-danger {
+            background: rgba(21, 30, 34, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(239, 68, 68, 0.15);
+        }
+        .glass-card-warning {
+            background: rgba(21, 30, 34, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(245, 158, 11, 0.1);
+        }
+
+        /* Glass Buttons */
+        .glass-button {
+            background: rgba(37, 192, 244, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(37, 192, 244, 0.3);
+            color: #25c0f4;
+            transition: all 0.2s ease;
+        }
+        .glass-button:hover {
+            background: rgba(37, 192, 244, 0.25);
+            border-color: rgba(37, 192, 244, 0.5);
+            box-shadow: 0 0 20px rgba(37, 192, 244, 0.2);
+        }
+        .glass-button-solid {
+            background: linear-gradient(135deg, #25c0f4 0%, #1a9cc9 100%);
+            border: none;
+            color: black;
+            box-shadow: 0 4px 16px rgba(37, 192, 244, 0.3);
+            transition: all 0.2s ease;
+        }
+        .glass-button-solid:hover {
+            box-shadow: 0 6px 24px rgba(37, 192, 244, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* Glass Input */
+        .glass-input {
+            background: rgba(11, 17, 22, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(42, 59, 66, 0.5);
+            color: white;
+            transition: all 0.2s ease;
+        }
+        .glass-input:focus {
+            border-color: rgba(37, 192, 244, 0.5);
+            box-shadow: 0 0 0 3px rgba(37, 192, 244, 0.1);
+            outline: none;
+        }
+
+        /* Glow Effects */
+        .glow-primary { box-shadow: 0 0 20px rgba(37, 192, 244, 0.3), 0 0 40px rgba(37, 192, 244, 0.1); }
+        .glow-danger { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+        .glow-warning { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+        .glow-success { box-shadow: 0 0 15px rgba(16, 185, 129, 0.25); }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>

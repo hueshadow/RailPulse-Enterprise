@@ -9,26 +9,26 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const NavItem = ({ 
-  active, 
-  icon, 
-  label, 
-  onClick 
-}: { 
-  active: boolean; 
-  icon: string; 
-  label: string; 
-  onClick: () => void; 
+const NavItem = ({
+  active,
+  icon,
+  label,
+  onClick
+}: {
+  active: boolean;
+  icon: string;
+  label: string;
+  onClick: () => void;
 }) => (
   <button
     onClick={onClick}
-    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all mb-1 ${
-      active 
-        ? 'bg-rail-primary/10 text-rail-primary border border-rail-primary/20 shadow-[0_0_15px_rgba(37,192,244,0.1)]' 
-        : 'text-slate-400 hover:text-white hover:bg-white/5'
+    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 ${
+      active
+        ? 'bg-rail-primary/15 text-rail-primary border border-rail-primary/30 shadow-[0_0_20px_rgba(37,192,244,0.15)] backdrop-blur-sm'
+        : 'text-slate-400 hover:text-white hover:bg-white/5 hover:backdrop-blur-sm'
     }`}
   >
-    <span className="material-symbols-outlined text-[20px]">{icon}</span>
+    <span className={`material-symbols-outlined text-[20px] ${active ? 'drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]' : ''}`}>{icon}</span>
     <span className="text-sm font-medium">{label}</span>
   </button>
 );
@@ -40,12 +40,12 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
   return (
     <div className="flex h-screen w-full overflow-hidden bg-rail-dark selection:bg-rail-primary selection:text-black">
       {/* Sidebar */}
-      <aside 
-        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 border-r border-rail-border bg-[#0e1318] flex flex-col transition-all duration-300 z-50`}
+      <aside
+        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 glass-sidebar flex flex-col transition-all duration-300 z-50`}
       >
-        <div className="h-16 flex items-center px-4 border-b border-rail-border">
+        <div className="h-16 flex items-center px-4 border-b border-rail-border/50 bg-gradient-to-r from-rail-primary/5 to-transparent">
           <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
-            <div className="min-w-[32px] h-8 flex items-center justify-center bg-rail-primary rounded text-black font-bold">
+            <div className="min-w-[32px] h-8 flex items-center justify-center bg-gradient-to-br from-rail-primary to-[#1a9cc9] rounded text-black font-bold shadow-[0_0_15px_rgba(37,192,244,0.4)]">
               <span className="material-symbols-outlined">train</span>
             </div>
             {sidebarOpen && (
@@ -71,10 +71,10 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
           <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? t('nav.fieldService') : ""} onClick={() => onScreenChange('field-service')} />
         </nav>
 
-        <div className="p-3 border-t border-rail-border">
-           <button 
+        <div className="p-3 border-t border-rail-border/50">
+           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-full flex items-center justify-center p-2 rounded hover:bg-white/5 text-slate-400"
+            className="w-full flex items-center justify-center p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all"
           >
             <span className="material-symbols-outlined">{sidebarOpen ? 'chevron_left' : 'chevron_right'}</span>
            </button>
@@ -84,12 +84,12 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         {/* Dynamic Header */}
-        <header className="h-16 border-b border-rail-border bg-rail-panel/50 backdrop-blur-md flex items-center justify-between px-6 z-40">
+        <header className="h-16 glass-header flex items-center justify-between px-6 z-40">
            <div className="flex items-center gap-4">
              <h2 className="text-lg font-bold text-white">{t(`screens.${currentScreen}`)}</h2>
-             <span className="px-2 py-0.5 rounded bg-rail-success/20 text-rail-success border border-rail-success/30 text-[10px] font-bold">{t('common.systemNormal')}</span>
+             <span className="px-2.5 py-1 rounded-full bg-rail-success/15 text-rail-success border border-rail-success/30 text-[10px] font-bold shadow-[0_0_12px_rgba(16,185,129,0.2)] backdrop-blur-sm">{t('common.systemNormal')}</span>
            </div>
-           
+
            <div className="flex items-center gap-6">
               <div className="hidden md:flex items-center gap-4 text-xs font-mono text-slate-400">
                 <span>UTC 14:42:05</span>
@@ -99,11 +99,11 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
               <LanguageSwitcher />
               <div className="h-6 w-px bg-white/10"></div>
               <div className="flex items-center gap-3">
-                 <button className="relative text-slate-400 hover:text-white">
+                 <button className="relative text-slate-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/5">
                     <span className="material-symbols-outlined">notifications</span>
-                    <span className="absolute top-0 right-0 size-2 bg-rail-danger rounded-full animate-pulse"></span>
+                    <span className="absolute top-1 right-1 size-2 bg-rail-danger rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
                  </button>
-                 <div className="size-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white border border-white/20">JD</div>
+                 <div className="size-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white border border-white/20 shadow-[0_0_12px_rgba(139,92,246,0.3)] ring-2 ring-white/10">JD</div>
               </div>
            </div>
         </header>
