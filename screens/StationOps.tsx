@@ -61,7 +61,7 @@ export const StationOps = () => {
     return (
         <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
             {/* Sidebar: Station Control */}
-            <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 mr-0">
+            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm flex flex-col border-r border-quantix-border/50">
                 <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-sm">
                     <h2 className="text-lg font-bold text-white">Station Control</h2>
                     <p className="text-xs text-slate-400">Central Hub • Live Operations</p>
@@ -192,7 +192,7 @@ export const StationOps = () => {
             </div>
 
             {/* CCTV Sidebar: Surveillance */}
-            <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 ml-0">
+            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
                 <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
                     <h3 className="font-bold text-white text-xs uppercase flex items-center gap-2">
                       <span className="w-1 h-3 bg-rail-danger rounded-full"></span>

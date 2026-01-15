@@ -29,7 +29,7 @@ export const NetworkOverview = () => {
   return (
     <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
       {/* Left: Incident Feed */}
-      <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 mr-0">
+      <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm flex flex-col border-r border-quantix-border/50">
         <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
            <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
              <span className="w-1 h-3 bg-rail-danger rounded-full animate-pulse"></span> Incident Feed
@@ -102,7 +102,7 @@ export const NetworkOverview = () => {
       </div>
 
       {/* Right: Stats */}
-      <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 ml-0">
+      <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
          <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm">
             <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
               <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
