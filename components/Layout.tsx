@@ -23,13 +23,14 @@ const NavItem = ({
 }) => (
   <button
     onClick={onClick}
-    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 ${
+    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 relative ${
       active
-        ? 'quantix-nav-active text-quantix-purple'
-        : 'text-slate-400 hover:text-white hover:bg-white/5 hover:backdrop-blur-sm'
+        ? 'text-quantix-purple bg-[#2A3347]'
+        : 'text-slate-400 hover:text-white hover:bg-[#2A3347]'
     }`}
   >
-    <span className={`material-symbols-outlined text-[20px] ${active ? 'drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]' : ''}`}>{icon}</span>
+    {active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-quantix-purple rounded-r"></span>}
+    <span className="material-symbols-outlined text-[20px]">{icon}</span>
     <span className="text-sm font-medium">{label}</span>
   </button>
 );
@@ -49,9 +50,9 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
 
       {/* Sidebar */}
       <aside
-        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 quantix-sidebar flex flex-col transition-all duration-300 z-50`}
+        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 flex flex-col transition-all duration-300 z-50 bg-[#1A1F2E]`}
       >
-        <div className="h-16 flex items-center px-4 border-b border-quantix-border/50 bg-gradient-to-r from-quantix-purple/5 to-transparent">
+        <div className="h-16 flex items-center px-4 border-b border-white/5 bg-gradient-to-r from-quantix-purple/10 to-transparent">
           <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
             <div className="min-w-[32px] h-8 flex items-center justify-center bg-gradient-to-br from-quantix-purple to-cyan-400 rounded text-black font-bold shadow-[0_0_20px_rgba(46,92,255,0.4)]">
               <span className="material-symbols-outlined">train</span>
@@ -66,20 +67,20 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
         </div>
 
         <nav className="flex-1 overflow-y-auto p-3 no-scrollbar">
-          <div className={`text-xs font-bold text-slate-500 uppercase mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.operations')}</div>
+          <div className={`text-[11px] font-medium text-slate-500 uppercase mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.operations')}</div>
           <NavItem active={currentScreen === 'overview'} icon="dashboard" label={sidebarOpen ? t('nav.networkOverview') : ""} onClick={() => onScreenChange('overview')} />
           <NavItem active={currentScreen === 'incident-command'} icon="e911_emergency" label={sidebarOpen ? t('nav.incidentCommand') : ""} onClick={() => onScreenChange('incident-command')} />
           <NavItem active={currentScreen === 'line-detail'} icon="alt_route" label={sidebarOpen ? t('nav.lineDetail') : ""} onClick={() => onScreenChange('line-detail')} />
           <NavItem active={currentScreen === 'station-ops'} icon="domain" label={sidebarOpen ? t('nav.stationOps') : ""} onClick={() => onScreenChange('station-ops')} />
 
-          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.analytics')}</div>
+          <div className={`text-[11px] font-medium text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.analytics')}</div>
           <NavItem active={currentScreen === 'forecasting'} icon="query_stats" label={sidebarOpen ? t('nav.forecasting') : ""} onClick={() => onScreenChange('forecasting')} />
 
-          <div className={`text-xs font-bold text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.mobile')}</div>
+          <div className={`text-[11px] font-medium text-slate-500 uppercase mt-4 mb-2 px-3 ${!sidebarOpen && 'hidden'}`}>{t('common.mobile')}</div>
           <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? t('nav.fieldService') : ""} onClick={() => onScreenChange('field-service')} />
         </nav>
 
-        <div className="p-3 border-t border-quantix-border/50">
+        <div className="p-3 border-t border-white/5">
            <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="w-full flex items-center justify-center p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all"
