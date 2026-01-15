@@ -207,10 +207,10 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     heatLayerRef.current = L.layerGroup().addTo(map.current);
     lineLayerRef.current = L.layerGroup().addTo(map.current);
 
-    // Add heatmap circles
+    // Add heatmap circles - refined styling
     railHeatData.forEach((point) => {
-      const radius = 150 + point.intensity * 400; // Dynamic radius based on intensity
-      const opacity = 0.1 + point.intensity * 0.4;
+      const radius = 80 + point.intensity * 180; // Smaller, more refined radius (80-260m)
+      const opacity = 0.08 + point.intensity * 0.25;
 
       const color = point.intensity > 0.8
         ? '#ef4444' // High - red
@@ -223,8 +223,8 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
         fillColor: color,
         color: color,
         weight: 1,
-        opacity,
-        fillOpacity: opacity * 0.5,
+        opacity: opacity * 0.8,
+        fillOpacity: opacity,
         className: 'rail-heat-circle',
       });
 
@@ -263,27 +263,27 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
       lineLayerRef.current?.addLayer(polyline);
 
-      // Add glow effect line behind
+      // Add refined glow effect line behind
       const glowLine = L.polyline(segment.points, {
         color: segment.lineColor,
-        weight: 8,
-        opacity: 0.2,
+        weight: 4,
+        opacity: 0.12,
         className: 'rail-line-glow',
       });
       lineLayerRef.current?.addLayer(glowLine);
     });
 
-    // Add stations
+    // Add stations - refined styling
     stations.forEach((station) => {
       const color = station.status === 'critical' ? '#ef4444' : station.status === 'warning' ? '#f59e0b' : '#10b981';
 
       const marker = L.circleMarker([station.lat, station.lng], {
-        radius: 8,
+        radius: 6,
         fillColor: color,
         color: '#fff',
-        weight: 2,
+        weight: 1.5,
         opacity: 1,
-        fillOpacity: 0.9,
+        fillOpacity: 0.85,
       });
 
       marker.bindPopup(`
@@ -322,45 +322,45 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       trainMarkers.current.set(train.id, marker);
     });
 
-    // Incident mode: Add incident zone around critical stations
+    // Incident mode: Add refined incident zone around critical stations
     if (incidentMode) {
       incidentZoneRef.current = L.layerGroup().addTo(map.current!);
 
       stations.forEach((station) => {
         if (station.status === 'critical') {
-          // Add pulsing incident zone
+          // Add pulsing incident zone - refined
           const incidentZone = L.circle([station.lat, station.lng], {
-            radius: 500,
+            radius: 350,
             fillColor: '#ef4444',
             color: '#ef4444',
-            weight: 2,
-            opacity: 0.6,
-            fillOpacity: 0.15,
+            weight: 1,
+            opacity: 0.4,
+            fillOpacity: 0.08,
             className: 'incident-zone-pulse',
           });
 
           incidentZone.bindPopup(`
             <div style="font-family: Inter, sans-serif; padding: 8px;">
-              <strong style="color: #ef4444; font-size: 14px;">INCIDENT ZONE</strong>
-              <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+              <strong style="color: #ef4444; font-size: 13px;">INCIDENT ZONE</strong>
+              <div style="margin-top: 6px; font-size: 11px; color: #64748b;">
                 <div>Station: ${station.name}</div>
                 <div>Status: CRITICAL</div>
-                <div>Radius: 500m</div>
+                <div>Radius: 350m</div>
               </div>
             </div>
           `);
 
           incidentZoneRef.current?.addLayer(incidentZone);
 
-          // Add outer alert ring
+          // Add subtle outer alert ring
           const alertRing = L.circle([station.lat, station.lng], {
-            radius: 800,
+            radius: 550,
             fillColor: '#ef4444',
             color: '#ef4444',
-            weight: 1,
-            opacity: 0.3,
+            weight: 0.75,
+            opacity: 0.2,
             fillOpacity: 0,
-            dashArray: '5, 10',
+            dashArray: '4, 8',
           });
           incidentZoneRef.current?.addLayer(alertRing);
         }
