@@ -133,6 +133,12 @@ export const NetworkOverview = () => {
                   </div>
                   <span className="text-xs font-mono font-bold text-rail-warning bg-rail-warning/15 px-2 py-0.5 rounded-full border border-rail-warning/30">+4m</span>
                </div>
+               <div className="flex justify-between items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
+                  <div className="flex items-center gap-2 text-sm text-white">
+                     <span className="size-2.5 rounded-full bg-green-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]"></span> Line D
+                  </div>
+                  <span className="text-xs font-mono font-bold text-rail-success bg-rail-success/15 px-2 py-0.5 rounded-full border border-rail-success/30">On Time</span>
+               </div>
             </div>
          </div>
 
