@@ -184,6 +184,113 @@ export const IncidentCommand = () => {
                              <p className="text-sm text-slate-300 mt-0.5">Initiated P1 Protocol. Incident created manually.</p>
                          </div>
                      </div>
+                     {/* Additional Audit Trail Entries */}
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-warning rounded-full mt-1.5 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:44:30</span>
+                                 <span className="text-[10px] uppercase bg-rail-warning/15 text-rail-warning px-1.5 py-0.5 rounded border border-rail-warning/30">Dispatch</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Technician T-102 dispatched to Station 4. ETA: 8 minutes.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:46:15</span>
+                                 <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Backup generators activated at Sector 4B. Emergency lighting restored.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:48:42</span>
+                                 <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Emergency services notified. Fire Station 12 responding.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:50:18</span>
+                                 <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
+                                 <span className="text-xs text-slate-400">Ops Dir. M. Chen</span>
+                             </div>
+                             <p className="text-sm text-slate-300 mt-0.5">Command: Isolate power to affected track section initiated.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-warning rounded-full mt-1.5 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:52:55</span>
+                                 <span className="text-[10px] uppercase bg-rail-warning/15 text-rail-warning px-1.5 py-0.5 rounded border border-rail-warning/30">Alert</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Passenger evacuation in progress at Platform 2. Estimated 450 passengers affected.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:55:30</span>
+                                 <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Shuttle buses dispatched to Central Station. Arrival in 12 minutes.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">10:58:12</span>
+                                 <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
+                                 <span className="text-xs text-slate-400">Cmdr. H. Vance</span>
+                             </div>
+                             <p className="text-sm text-slate-300 mt-0.5">SOP Step 2 completed. Power isolation verified. Initiating Step 3.</p>
+                         </div>
+                     </div>
+                     <div className="flex gap-3">
+                         <div className="flex flex-col items-center">
+                             <div className="size-2.5 bg-rail-danger rounded-full mt-1.5 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+                             <div className="w-px h-4 bg-white/10 my-1"></div>
+                         </div>
+                         <div>
+                             <div className="flex items-center gap-2">
+                                 <span className="text-xs font-mono text-slate-500">11:00:45</span>
+                                 <span className="text-[10px] uppercase border border-rail-danger text-rail-danger px-1.5 py-0.5 rounded">Alert</span>
+                             </div>
+                             <p className="text-sm text-white mt-0.5">Secondary power surge detected at Substation 7. Monitoring active.</p>
+                         </div>
+                     </div>
                  </div>
              </div>
          </div>
