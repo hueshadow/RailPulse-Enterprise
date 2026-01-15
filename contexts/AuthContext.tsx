@@ -50,11 +50,25 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       } catch (e) {
         console.error('Failed to load auth state:', e);
       }
-      setAuthState(prev => ({ ...prev, loading: false }));
+
+      // Auto-login with demo user
+      const demoUser: User = {
+        ...MOCK_USERS.admin.user,
+        lastLogin: new Date()
+      };
+      setAuthState({
+        isAuthenticated: true,
+        user: demoUser,
+        loading: false
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        isAuthenticated: true,
+        user: demoUser
+      }));
     };
 
-    // Simulate async loading
-    setTimeout(loadAuthState, 500);
+    // Load auth state immediately
+    loadAuthState();
   }, []);
 
   // Add activity log
