@@ -1,132 +1,385 @@
-import React from 'react';
-import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import React, { useState } from 'react';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, RadialBarChart, RadialBar, Tooltip } from 'recharts';
 
-const data = [{v:40}, {v:35}, {v:38}, {v:20}, {v:25}, {v:10}, {v:15}, {v:12}];
-const barData = [{v:20}, {v:35}, {v:25}, {v:60, fill:'#f59e0b'}, {v:30}, {v:40}, {v:25}, {v:20}];
+// Chart data
+const punctualityData = [
+  { v: 96 }, { v: 97 }, { v: 95 }, { v: 98 }, { v: 97 }, { v: 99 }, { v: 98 }
+];
+
+const headwayData = [
+  { v: 20 }, { v: 35 }, { v: 45 }, { v: 60 }, { v: 40 }, { v: 25 }, { v: 30 }, { v: 50 }
+];
+
+const passengerData = [
+  { hour: '6am', v: 1200 },
+  { hour: '8am', v: 4500 },
+  { hour: '10am', v: 2800 },
+  { hour: '12pm', v: 3200 },
+  { hour: '2pm', v: 2600 },
+  { hour: '4pm', v: 4100 },
+  { hour: '6pm', v: 5200 },
+  { hour: '8pm', v: 3500 },
+  { hour: '10pm', v: 1800 },
+];
+
+const delayByCause = [
+  { name: 'Signal', value: 35, fill: '#ef4444' },
+  { name: 'Weather', value: 20, fill: '#f59e0b' },
+  { name: 'Equipment', value: 25, fill: '#2E5CFF' },
+  { name: 'Ops', value: 15, fill: '#8b5cf6' },
+  { name: 'Other', value: 5, fill: '#10b981' },
+];
+
+const trainOccupancy = [
+  { v: 45 }, { v: 65 }, { v: 82 }, { v: 91 }, { v: 78 }, { v: 55 }, { v: 40 }, { v: 35 }
+];
+
+const energyData = [
+  { hour: '00', kw: 120 }, { hour: '04', kw: 80 }, { hour: '08', kw: 450 },
+  { hour: '12', kw: 380 }, { hour: '16', kw: 520 }, { hour: '20', kw: 480 }, { hour: '23', kw: 200 }
+];
+
+const stationCrowding = [
+  { station: 'South', v: 45 },
+  { station: 'Market', v: 78 },
+  { station: 'Central', v: 95 },
+  { station: 'Tech', v: 62 },
+  { station: 'North', v: 38 },
+];
+
+const reliabilityData = [
+  { v: 98.5 }, { v: 99.1 }, { v: 97.8 }, { v: 99.3 }, { v: 98.9 }, { v: 99.5 }
+];
+
+const wheelWear = [
+  { mm: 2.5 }, { mm: 3.1 }, { mm: 4.2 }, { mm: 2.8 }, { mm: 3.5 }
+];
+
+const brakePerf = [
+  { v: 95 }, { v: 92 }, { v: 98 }, { v: 88 }, { v: 94 }
+];
+
+const doorOps = [
+  { success: 99.2 }, { fail: 0.8 }
+];
+
+const trackCondition = [
+  { gauge: 98 }, { alignment: 97 }, { surface: 99 }
+];
+
+const maintStatus = [
+  { name: 'Scheduled', value: 12 },
+  { name: 'In Progress', value: 3 },
+  { name: 'Completed', value: 45 },
+  { name: 'Overdue', value: 2 },
+];
+
+const crewUtil = [
+  { v: 85 }, { v: 12 }, { v: 3 }
+];
+
+const temperatureData = [
+  { v: 22 }, { v: 24 }, { v: 23 }, { v: 21 }, { v: 25 }, { v: 23 }
+];
+
+const signalPerf = [
+  { v: 99.8 }, { v: 99.5 }, { v: 99.9 }, { v: 99.7 }
+];
+
+const lineData = [
+  { v: 65 }, { v: 80 }, { v: 72 }, { v: 88 }, { v: 90 }, { v: 75 }, { v: 68 }, { v: 82 }, { v: 95 }
+];
+
+// Chart components
+const ChartCard = ({ title, subtitle, children, color = 'quantix-purple', stats }: { title: string; subtitle?: string; children: React.ReactNode; color?: string; stats?: string }) => {
+  const colorMap: Record<string, string> = {
+    'quantix-purple': '#25c0f4',
+    'success': '#10b981',
+    'warning': '#f59e0b',
+    'danger': '#ef4444',
+    'purple': '#8b5cf6',
+    'orange': '#f97316',
+  };
+  const accentColor = colorMap[color] || colorMap['quantix-purple'];
+
+  return (
+    <div className="glass-card p-4 flex flex-col h-48 group hover:shadow-[0_0_20px_rgba(37,192,244,0.1)] transition-all">
+      <div className="flex justify-between items-start mb-3">
+        <div>
+          <h3 className="text-xs font-bold text-white flex items-center gap-2">
+            <span className="w-1 h-3 rounded-full" style={{ backgroundColor: accentColor }}></span>
+            {title}
+          </h3>
+          {subtitle && <p className="text-[10px] text-slate-500 mt-0.5">{subtitle}</p>}
+        </div>
+        {stats && (
+          <span className="text-xs font-mono px-1.5 py-0.5 rounded border" style={{ color: accentColor, borderColor: `${accentColor}30`, backgroundColor: `${accentColor}10` }}>
+            {stats}
+          </span>
+        )}
+      </div>
+      <div className="flex-1 min-h-0">
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export const LineDetail = () => {
+  const [viewMode, setViewMode] = useState<'overview' | 'detailed'>('overview');
+
   return (
-    <div className="p-6 h-full overflow-y-auto">
-       <div className="flex justify-between items-center mb-6">
-           <h1 className="text-xl font-bold text-white">BLUE LINE <span className="text-slate-400 font-normal text-lg">– Live Monitor</span></h1>
-           <div className="flex gap-2">
-               <button className="px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-xs text-white hover:bg-white/10 hover:border-white/20 transition-all">All Stations</button>
-               <button className="px-4 py-1.5 rounded-lg bg-quantix-purple/15 backdrop-blur-sm border border-quantix-purple/30 text-xs text-quantix-purple hover:bg-quantix-purple/25 transition-all shadow-[0_0_10px_rgba(37,192,244,0.1)]">Northbound</button>
+    <div className="p-4 h-full overflow-y-auto">
+       {/* Header */}
+       <div className="flex justify-between items-center mb-4">
+           <h1 className="text-lg font-bold text-white">BLUE LINE <span className="text-slate-400 font-normal text-sm">– Live Monitor</span></h1>
+           <div className="flex gap-1">
+               <button className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-white hover:bg-white/10 transition-all">All Stations</button>
+               <button className="px-3 py-1 rounded-lg bg-quantix-purple/15 border border-quantix-purple/30 text-xs text-quantix-purple hover:bg-quantix-purple/25 transition-all">Northbound</button>
+               <button className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-white hover:bg-white/10 transition-all">Southbound</button>
            </div>
        </div>
 
-       {/* Schematic */}
-       <div className="glass-card rounded-xl p-8 mb-6 relative overflow-hidden h-40 flex items-center">
-            {/* Track */}
-            <div className="w-full h-2 bg-slate-700/60 rounded-full relative backdrop-blur-sm">
-                 <div className="absolute left-0 top-0 h-full bg-quantix-purple/50 w-[65%] rounded-full shadow-[0_0_10px_rgba(37,192,244,0.3)]"></div>
-                 <div className="absolute left-[65%] top-0 h-full bg-rail-warning/60 w-[15%] rounded-full animate-pulse shadow-[0_0_15px_rgba(245,158,11,0.5)]"></div>
+       {/* Key Metrics Row */}
+       <div className="grid grid-cols-6 gap-3 mb-4">
+          {[
+            { label: 'On-Time', value: '98.2%', color: 'text-rail-success', bg: 'bg-rail-success/10', border: 'border-rail-success/30' },
+            { label: 'Active Trains', value: '24', color: 'text-quantix-purple', bg: 'bg-quantix-purple/10', border: 'border-quantix-purple/30' },
+            { label: 'Pax/hr', value: '3,847', color: 'text-white', bg: 'bg-white/5', border: 'border-white/10' },
+            { label: 'Avg Headway', value: '3m 20s', color: 'text-rail-warning', bg: 'bg-rail-warning/10', border: 'border-rail-warning/30' },
+            { label: 'Load Factor', value: '76%', color: 'text-rail-warning', bg: 'bg-rail-warning/10', border: 'border-rail-warning/30' },
+            { label: 'Energy', value: '412 kW', color: 'text-slate-300', bg: 'bg-slate-500/10', border: 'border-slate-500/30' },
+          ].map((metric, i) => (
+            <div key={i} className={`glass-card p-3 text-center border ${metric.border}`}>
+               <div className={`text-xl font-bold ${metric.color}`}>{metric.value}</div>
+               <div className="text-[10px] text-slate-500 uppercase mt-1">{metric.label}</div>
             </div>
-
-            {/* Stations */}
-            {[5, 25, 50, 70, 95].map((pos, i) => (
-                <div key={i} className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer" style={{left: `${pos}%`}}>
-                     <div className={`size-5 rounded-full border-2 border-quantix-purple transition-all duration-200 ${
-                       pos === 50
-                         ? 'bg-white size-6 border-[3px] shadow-[0_0_20px_rgba(37,192,244,0.7)] ring-4 ring-quantix-purple/20'
-                         : 'bg-[#0B1116] group-hover:bg-quantix-purple group-hover:shadow-[0_0_12px_rgba(37,192,244,0.5)]'
-                     }`}></div>
-                     <span className={`absolute top-6 text-xs font-medium whitespace-nowrap ${pos === 50 ? 'text-white font-bold' : 'text-slate-500 group-hover:text-white transition-colors'}`}>
-                        {['South Gateway', 'Market Dist', 'Central Station', 'Tech Park', 'North Harbor'][i]}
-                     </span>
-
-                     {/* Active Tooltip for Center */}
-                     {pos === 50 && (
-                         <div className="absolute bottom-8 mb-2 glass-card p-3 rounded-xl shadow-xl w-48 z-10">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="text-white font-bold text-sm">Central Station</span>
-                                <span className="text-[10px] bg-rail-success/20 text-rail-success px-1.5 py-0.5 rounded-full border border-rail-success/30">Active</span>
-                            </div>
-                            <div className="flex justify-between text-xs mb-1">
-                                <span className="text-slate-400">Capacity</span>
-                                <span className="text-rail-warning font-bold">88%</span>
-                            </div>
-                            <div className="w-full h-1.5 bg-slate-700/60 rounded-full overflow-hidden backdrop-blur-sm">
-                                <div className="h-full bg-rail-warning w-[88%] rounded-full shadow-[0_0_8px_rgba(245,158,11,0.4)]"></div>
-                            </div>
-                         </div>
-                     )}
-                </div>
-            ))}
-
-            {/* Trains */}
-            {[15, 42, 85].map((pos, i) => (
-                <div key={i} className="absolute top-1/2 -translate-y-[12px] flex flex-col items-center z-20" style={{left: `${pos}%`}}>
-                    <div className="bg-[#0B1116]/80 backdrop-blur-sm border border-quantix-purple text-quantix-purple px-2 py-1 rounded text-[10px] font-mono mb-1 shadow-[0_0_15px_rgba(37,192,244,0.4)]">TR-{104+i}</div>
-                    <div className="w-10 h-5 bg-gradient-to-r from-quantix-purple to-[#1a9cc9] rounded flex items-center justify-center shadow-[0_0_15px_rgba(37,192,244,0.6)]">
-                         <span className="material-symbols-outlined text-black text-[16px] rotate-90 font-bold">arrow_right_alt</span>
-                    </div>
-                </div>
-            ))}
-
-            <div className="absolute left-[32%] top-1/2 -translate-y-1/2 glass px-3 py-1 rounded-lg">
-                <span className="text-[10px] text-slate-400 font-mono">HEADWAY: <span className="text-white font-bold">3m 20s</span></span>
-            </div>
+          ))}
        </div>
 
-       <div className="grid grid-cols-3 gap-6">
-           <div className="glass-card p-5 h-64 flex flex-col">
-               <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                     <span className="w-1 h-4 bg-quantix-purple rounded-full"></span>
-                     Punctuality Trend (7d)
-                   </h3>
-                   <span className="text-xs text-quantix-purple font-mono bg-quantix-purple/10 px-2 py-1 rounded border border-quantix-purple/20">98.2%</span>
-               </div>
-               <div className="flex-1">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={data}>
-                            <defs>
-                                <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#25c0f4" stopOpacity={0.3}/>
-                                    <stop offset="95%" stopColor="#25c0f4" stopOpacity={0}/>
-                                </linearGradient>
-                            </defs>
-                            <Area type="monotone" dataKey="v" stroke="#25c0f4" fill="url(#grad1)" strokeWidth={2} />
-                        </AreaChart>
-                    </ResponsiveContainer>
-               </div>
-           </div>
+       {/* Main Charts Grid - Row 1 */}
+       <div className="grid grid-cols-4 gap-3 mb-3">
+          <ChartCard title="Punctuality Trend" subtitle="Last 7 days" color="success" stats="98.2%">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={punctualityData}>
+                <defs>
+                  <linearGradient id="gradPunct" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#10b981" fill="url(#gradPunct)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-           <div className="glass-card p-5 h-64 flex flex-col">
-               <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                     <span className="w-1 h-4 bg-rail-success rounded-full"></span>
-                     Headway Variance
-                   </h3>
-                   <span className="text-xs text-slate-400 font-mono">24h</span>
-               </div>
-               <div className="flex-1 flex items-end justify-between gap-1 px-2">
-                    {barData.map((d, i) => (
-                        <div key={i} className="w-full rounded-t-sm opacity-80 hover:opacity-100 transition-all cursor-pointer hover:shadow-[0_0_10px_rgba(16,185,129,0.3)]" style={{height: `${d.v}%`, backgroundColor: d.fill || '#10b981'}}></div>
-                    ))}
-               </div>
-               <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-2 pt-1 border-t border-white/5">
-                   <span>00:00</span><span>12:00</span><span>23:59</span>
-               </div>
-           </div>
+          <ChartCard title="Headway Variance" subtitle="By hour" color="warning" stats="±12s">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={headwayData}>
+                <Bar dataKey="v" fill="#f59e0b" radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-           <div className="glass-card p-5 h-64">
-                <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                      <span className="w-1 h-4 bg-purple-500 rounded-full"></span>
-                      Pax Forecast
-                    </h3>
-                    <span className="text-xs text-slate-400">AI Prediction</span>
-                </div>
-                <div className="w-full h-full relative">
-                    <svg viewBox="0 0 100 50" preserveAspectRatio="none" className="w-full h-32">
-                         <path d="M0 30 Q50 10 100 25 L100 45 Q50 30 0 40 Z" fill="#9cb2ba" fillOpacity="0.1" />
-                         <path d="M0 35 Q50 20 100 35" fill="none" stroke="#fff" strokeDasharray="3,2" strokeWidth="1.5" />
-                    </svg>
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-2 py-1 rounded text-[10px] text-quantix-purple font-mono">Peak: 18:45</div>
-                </div>
-           </div>
+          <ChartCard title="Passenger Flow" subtitle="By hour" color="quantix-purple" stats="Peak 18:45">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={passengerData}>
+                <defs>
+                  <linearGradient id="gradPax" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#25c0f4" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#25c0f4" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#25c0f4" fill="url(#gradPax)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Delay by Cause" subtitle="Distribution" color="danger">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={delayByCause} cx="50%" cy="50%" innerRadius={25} outerRadius={45} paddingAngle={2} dataKey="value">
+                  {delayByCause.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </ChartCard>
+       </div>
+
+       {/* Main Charts Grid - Row 2 */}
+       <div className="grid grid-cols-4 gap-3 mb-3">
+          <ChartCard title="Train Occupancy" subtitle="Live %" color="purple" stats="76% avg">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={trainOccupancy}>
+                <defs>
+                  <linearGradient id="gradOcc" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#8b5cf6" fill="url(#gradOcc)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Energy Consumption" subtitle="kW by hour" color="orange" stats="412 kW">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={energyData}>
+                <Bar dataKey="kw" fill="#f97316" radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Station Crowding" subtitle="% capacity" color="warning" stats="Max 95%">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={stationCrowding} layout="vertical">
+                <XAxis type="number" domain={[0, 100]} hide />
+                <YAxis type="category" dataKey="station" tick={{ fill: '#64748b', fontSize: 10 }} width={45} />
+                <Bar dataKey="v" fill="#f59e0b" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="System Reliability" subtitle="Last 6 runs" color="success" stats="99.1%">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={reliabilityData}>
+                <Line type="monotone" dataKey="v" stroke="#10b981" strokeWidth={1.5} dot={{ r: 2, fill: '#10b981' }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartCard>
+       </div>
+
+       {/* Main Charts Grid - Row 3 */}
+       <div className="grid grid-cols-4 gap-3 mb-3">
+          <ChartCard title="Wheel Wear" subtitle="mm degradation" color="danger" stats="Avg 3.2mm">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={wheelWear}>
+                <Bar dataKey="mm" fill="#ef4444" radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Brake Performance" subtitle="Efficiency %" color="success" stats="94%">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={brakePerf}>
+                <defs>
+                  <linearGradient id="gradBrake" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#10b981" fill="url(#gradBrake)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Door Operations" subtitle="Success rate" color="quantix-purple" stats="99.2%">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={doorOps} cx="50%" cy="50%" innerRadius={30} outerRadius={50} paddingAngle={5}>
+                  <Cell fill="#25c0f4" />
+                  <Cell fill="#ef4444" />
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Track Condition" subtitle="Index score" color="success" stats="98%">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadialBarChart cx="50%" cy="50%" innerRadius={20} outerRadius={50} data={trackCondition}>
+                <RadialBar dataKey="gauge" background={{ strokeWidth: 2, stroke: '#1e293b' }} />
+              </RadialBarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+       </div>
+
+       {/* Main Charts Grid - Row 4 */}
+       <div className="grid grid-cols-4 gap-3 mb-3">
+          <ChartCard title="Maintenance Status" subtitle="Work orders" color="quantix-purple" stats="62 total">
+            <div className="flex items-center justify-center h-full">
+               <div className="flex gap-4 text-xs">
+                  <div className="text-center">
+                     <div className="text-lg font-bold text-quantix-purple">12</div>
+                     <div className="text-slate-500">Scheduled</div>
+                  </div>
+                  <div className="text-center">
+                     <div className="text-lg font-bold text-rail-warning">3</div>
+                     <div className="text-slate-500">In Progress</div>
+                  </div>
+                  <div className="text-center">
+                     <div className="text-lg font-bold text-rail-success">45</div>
+                     <div className="text-slate-500">Completed</div>
+                  </div>
+                  <div className="text-center">
+                     <div className="text-lg font-bold text-rail-danger">2</div>
+                     <div className="text-slate-500">Overdue</div>
+                  </div>
+               </div>
+            </div>
+          </ChartCard>
+
+          <ChartCard title="Crew Utilization" subtitle="Allocation %" color="quantix-purple" stats="85%">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={crewUtil} cx="50%" cy="50%" innerRadius={35} outerRadius={50} dataKey="v">
+                  <Cell fill="#25c0f4" />
+                  <Cell fill="#f59e0b" />
+                  <Cell fill="#10b981" />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Car Temperature" subtitle="Average °C" color="success" stats="23°C">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={temperatureData}>
+                <Line type="monotone" dataKey="v" stroke="#10b981" strokeWidth={1.5} dot={{ r: 2, fill: '#10b981' }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Signal Performance" subtitle="Uptime %" color="success" stats="99.7%">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={signalPerf}>
+                <defs>
+                  <linearGradient id="gradSignal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#10b981" fill="url(#gradSignal)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+       </div>
+
+       {/* Line Voltage & Speed Profile */}
+       <div className="grid grid-cols-2 gap-3">
+          <ChartCard title="Line Voltage Profile" subtitle="Along route" color="quantix-purple" stats="750V DC">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={lineData}>
+                <defs>
+                  <linearGradient id="gradVolt" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#25c0f4" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#25c0f4" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke="#25c0f4" fill="url(#gradVolt)" strokeWidth={1.5} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title="Speed Restriction Zones" subtitle="Current alerts" color="danger" stats="3 active">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={lineData}>
+                <Bar dataKey="v" fill="#ef4444" radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
        </div>
     </div>
   );
