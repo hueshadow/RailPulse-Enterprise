@@ -9,23 +9,17 @@ const data = [
 const incidents = [
   // P1 - Critical
   { id: 'INC-2024-1847', time: '10:42 AM', title: 'Signal Failure at Central Station', loc: 'Line A • Track 4', status: 'Technician Dispatched', priority: 'P1' },
-  { id: 'INC-2024-1846', time: '09:17 AM', title: 'Track Obstruction - Object on Line', loc: 'Line C • Mile 12.3', status: 'Clearing in Progress', priority: 'P1' },
-  { id: 'INC-2024-1845', time: '08:55 AM', title: 'Power Supply Failure - Substation 7', loc: 'Line B • Zone 3', status: 'Rerouting Power', priority: 'P1' },
   // P2 - High Priority
   { id: 'INC-2024-1844', time: '10:28 AM', title: 'Door Malfunction - Train T-204', loc: 'Line A • Between Stations 5-6', status: 'Train Held', priority: 'P2' },
   { id: 'INC-2024-1843', time: '10:15 AM', title: 'Communication System Outage', loc: 'Line D • Full Segment', status: 'Investigating', priority: 'P2' },
-  { id: 'INC-2024-1842', time: '09:45 AM', title: 'Escalator Failure - North Gate', loc: 'Station North Gate', status: 'Maintenance Assigned', priority: 'P2' },
   // P3 - Medium Priority
   { id: 'INC-2024-1841', time: '10:38 AM', title: 'Minor Obstruction on Platform', loc: 'Line B • Sector 7', status: 'Investigating', priority: 'P3' },
   { id: 'INC-2024-1840', time: '10:20 AM', title: 'HVAC System Warning', loc: 'Union Station', status: 'Monitoring', priority: 'P3' },
-  { id: 'INC-2024-1839', time: '09:52 AM', title: 'Passenger Medical Emergency', loc: 'Line C • Station 15', status: 'Resolved', priority: 'P3' },
-  { id: 'INC-2024-1838', time: '09:35 AM', title: 'Ticket Machine Out of Service', loc: 'West Terminal', status: 'Parts Ordered', priority: 'P3' },
   // P4 - Low Priority
   { id: 'INC-2024-1837', time: '09:15 AM', title: 'Scheduled Maintenance', loc: 'Line A • Overnight', status: 'Planned', priority: 'P4' },
   { id: 'INC-2024-1836', time: '08:45 AM', title: 'Platform Signage Update', loc: 'South Park Station', status: 'In Progress', priority: 'P4' },
   { id: 'INC-2024-1835', time: '08:30 AM', title: 'Cleaning Required - Car 112', loc: 'Line B • Depot', status: 'Scheduled', priority: 'P4' },
   { id: 'INC-2024-1834', time: '08:00 AM', title: 'Landscaping Work Notice', loc: 'Line D • Above Ground', status: 'Planned', priority: 'P4' },
-  { id: 'INC-2024-1833', time: '07:45 AM', title: 'Advertising Display Maintenance', loc: 'Central Station', status: 'Pending Parts', priority: 'P4' },
   // Resolved
   { id: 'INC-2024-1832', time: '07:30 AM', title: 'Minor Delay - Signal Issue', loc: 'Line A • Resolved', status: 'Resolved', priority: 'P4' },
   { id: 'INC-2024-1831', time: '06:55 AM', title: 'Track Inspection Complete', loc: 'Line C • Full Line', status: 'Resolved', priority: 'P4' },
@@ -40,7 +34,7 @@ export const NetworkOverview = () => {
            <h3 className="text-sm font-bold uppercase flex items-center gap-2">
              <span className="material-symbols-outlined text-rail-danger animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">campaign</span> Incident Feed
            </h3>
-           <span className="text-[10px] bg-rail-danger/20 text-rail-danger px-2.5 py-1 rounded-full font-bold border border-rail-danger/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]">3 CRITICAL</span>
+           <span className="text-[10px] bg-rail-danger/20 text-rail-danger px-2.5 py-1 rounded-full font-bold border border-rail-danger/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]">1 CRITICAL</span>
         </div>
         <div className="flex-1 overflow-y-auto p-3 space-y-2">
            {incidents.map((inc, i) => (
