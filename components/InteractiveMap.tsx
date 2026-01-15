@@ -39,6 +39,10 @@ interface InteractiveMapProps {
   center?: [number, number];
   zoom?: number;
   onStationClick?: (station: Station) => void;
+  showControls?: boolean;
+  showHeatmap?: boolean;
+  showLines?: boolean;
+  incidentMode?: boolean; // Special mode for incident command
 }
 
 // NYC-style rail transit heat data
@@ -159,14 +163,19 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   center = [40.73, -74.00],
   zoom = 12,
   onStationClick,
+  showControls = true,
+  showHeatmap = true,
+  showLines = true,
+  incidentMode = false,
 }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const trainMarkers = useRef<Map<string, L.CircleMarker>>(new Map());
   const heatLayerRef = useRef<L.LayerGroup | null>(null);
   const lineLayerRef = useRef<L.LayerGroup | null>(null);
-  const [showHeatmap, setShowHeatmap] = useState(true);
-  const [showLines, setShowLines] = useState(true);
+  const incidentZoneRef = useRef<L.LayerGroup | null>(null);
+  const [heatmapEnabled, setHeatmapEnabled] = useState(showHeatmap);
+  const [linesEnabled, setLinesEnabled] = useState(showLines);
   const [currentZoom, setCurrentZoom] = useState(zoom);
 
   useEffect(() => {
@@ -313,6 +322,51 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       trainMarkers.current.set(train.id, marker);
     });
 
+    // Incident mode: Add incident zone around critical stations
+    if (incidentMode) {
+      incidentZoneRef.current = L.layerGroup().addTo(map.current!);
+
+      stations.forEach((station) => {
+        if (station.status === 'critical') {
+          // Add pulsing incident zone
+          const incidentZone = L.circle([station.lat, station.lng], {
+            radius: 500,
+            fillColor: '#ef4444',
+            color: '#ef4444',
+            weight: 2,
+            opacity: 0.6,
+            fillOpacity: 0.15,
+            className: 'incident-zone-pulse',
+          });
+
+          incidentZone.bindPopup(`
+            <div style="font-family: Inter, sans-serif; padding: 8px;">
+              <strong style="color: #ef4444; font-size: 14px;">INCIDENT ZONE</strong>
+              <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                <div>Station: ${station.name}</div>
+                <div>Status: CRITICAL</div>
+                <div>Radius: 500m</div>
+              </div>
+            </div>
+          `);
+
+          incidentZoneRef.current?.addLayer(incidentZone);
+
+          // Add outer alert ring
+          const alertRing = L.circle([station.lat, station.lng], {
+            radius: 800,
+            fillColor: '#ef4444',
+            color: '#ef4444',
+            weight: 1,
+            opacity: 0.3,
+            fillOpacity: 0,
+            dashArray: '5, 10',
+          });
+          incidentZoneRef.current?.addLayer(alertRing);
+        }
+      });
+    }
+
     return () => {
       if (map.current) {
         map.current.remove();
@@ -436,6 +490,34 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
           <span className="w-4 h-1 rounded" style={{ backgroundColor: '#10b981' }}></span> Line D
         </div>
       </div>
+
+      {/* Incident Mode Legend */}
+      {incidentMode && (
+        <div className="absolute top-4 left-4 bg-[#1A1F2E] rounded-lg p-3 shadow-lg border border-rail-danger/30">
+          <div className="text-xs font-bold text-rail-danger mb-2 flex items-center gap-2">
+            <span className="material-symbols-outlined text-[16px]">warning</span>
+            Incident Zone
+          </div>
+          <div className="flex items-center gap-2 text-xs text-slate-300 mb-1">
+            <span className="w-3 h-3 rounded-full bg-[#ef4444]"></span> Critical Station
+          </div>
+          <div className="flex items-center gap-2 text-xs text-slate-300 mb-1">
+            <span className="w-3 h-3 rounded-full bg-[#f59e0b]"></span> Warning Station
+          </div>
+          <div className="flex items-center gap-2 text-xs text-slate-300 mb-1">
+            <span className="w-3 h-3 rounded-full bg-[#10b981]"></span> Normal Station
+          </div>
+          <div className="border-t border-white/10 my-2"></div>
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <span className="material-symbols-outlined text-[14px]">zoom_in</span>
+            <span>Scroll to zoom</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-slate-400 mt-1">
+            <span className="material-symbols-outlined text-[14px]">pan_tool</span>
+            <span>Drag to pan</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

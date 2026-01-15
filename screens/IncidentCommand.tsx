@@ -1,4 +1,13 @@
 import React from 'react';
+import { InteractiveMap } from '../components/InteractiveMap';
+
+// Incident-specific stations for the map
+const incidentStations = [
+  { id: 's1', name: 'Station 4 (Incident)', lat: 40.7128, lng: -74.0060, status: 'critical' as const, line: 'Blue Line' },
+  { id: 's2', name: 'Substation 7', lat: 40.7050, lng: -74.0150, status: 'warning' as const, line: 'Blue Line' },
+  { id: 's3', name: 'Sector 4B', lat: 40.7200, lng: -74.0000, status: 'normal' as const, line: 'Blue Line' },
+  { id: 's4', name: 'Central Station', lat: 40.7350, lng: -73.9900, status: 'normal' as const, line: 'Blue Line' },
+];
 
 export const IncidentCommand = () => {
   return (
@@ -77,13 +86,32 @@ export const IncidentCommand = () => {
              </div>
          </div>
 
-         <div className="flex-1 p-6 pt-2 grid grid-cols-2 gap-6 min-h-0">
-             {/* Map Placeholder */}
-             <div className="relative rounded-xl overflow-hidden border border-white/10 group glass-card">
-                  <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuArWJgDy7OnxqwDwyhKvEayi8P9-Q7LhLfhg4txIt-BEc29ZpQizNaSSj_MbRC9DzCkq8fUiFch2e4ElqxWOV7wa8nZ_nKwdmgg8xwLhQd4jHHjvaCiOBWo99fI1_6JjceBWFycix8I3WAM6LFBdQ3MQOCIssuJREkwIMmRmoXvW9FcN6Adzw7sUHookRjGBDyNjRHKo4gGhoyAcbepBVbbGaVLuKurvSye5O5BJEA7Q7-NpTwD-NNRRjmoLOctqcWkPblmHRQ4W6k')`}}></div>
-                  <div className="absolute top-4 left-4 glass px-3 py-1.5 rounded-lg flex items-center gap-2">
-                      <div className="size-2 bg-rail-danger rounded-full animate-ping"></div>
-                      <span className="text-xs font-bold text-white">LIVE FEED - CAM 04B</span>
+         <div className="flex-1 p-4 pt-2 grid grid-cols-2 gap-4 min-h-0">
+             {/* Interactive Map */}
+             <div className="glass-card rounded-xl overflow-hidden flex flex-col">
+                  <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
+                      <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
+                        <span className="w-1 h-3 bg-rail-danger rounded-full animate-pulse"></span>
+                        Incident Map
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <span className="size-2 bg-rail-danger rounded-full animate-ping"></span>
+                        <span className="text-[10px] text-rail-danger font-bold">LIVE</span>
+                      </div>
+                  </div>
+                  <div className="flex-1 relative">
+                    <InteractiveMap
+                      stations={incidentStations}
+                      center={[40.7128, -74.0060]}
+                      zoom={14}
+                      showControls={false}
+                      showHeatmap={false}
+                      showLines={false}
+                      incidentMode={true}
+                      onStationClick={(station) => {
+                        console.log('Station clicked:', station);
+                      }}
+                    />
                   </div>
              </div>
 
