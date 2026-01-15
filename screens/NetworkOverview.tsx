@@ -7,9 +7,28 @@ const data = [
 ];
 
 const incidents = [
-  { id: 'P1', time: '10:42 AM', title: 'Signal Failure at Central Stn', loc: 'Line A • Track 4', status: 'Technician Dispatched', priority: 'P1' },
-  { id: 'P3', time: '10:38 AM', title: 'Minor Obstruction', loc: 'Line B • Sector 7', status: 'Investigating', priority: 'P3' },
-  { id: 'P4', time: '09:15 AM', title: 'Maintenance Scheduled', loc: 'Line A • Overnight', status: 'Planned', priority: 'P4' },
+  // P1 - Critical
+  { id: 'INC-2024-1847', time: '10:42 AM', title: 'Signal Failure at Central Station', loc: 'Line A • Track 4', status: 'Technician Dispatched', priority: 'P1' },
+  { id: 'INC-2024-1846', time: '09:17 AM', title: 'Track Obstruction - Object on Line', loc: 'Line C • Mile 12.3', status: 'Clearing in Progress', priority: 'P1' },
+  { id: 'INC-2024-1845', time: '08:55 AM', title: 'Power Supply Failure - Substation 7', loc: 'Line B • Zone 3', status: 'Rerouting Power', priority: 'P1' },
+  // P2 - High Priority
+  { id: 'INC-2024-1844', time: '10:28 AM', title: 'Door Malfunction - Train T-204', loc: 'Line A • Between Stations 5-6', status: 'Train Held', priority: 'P2' },
+  { id: 'INC-2024-1843', time: '10:15 AM', title: 'Communication System Outage', loc: 'Line D • Full Segment', status: 'Investigating', priority: 'P2' },
+  { id: 'INC-2024-1842', time: '09:45 AM', title: 'Escalator Failure - North Gate', loc: 'Station North Gate', status: 'Maintenance Assigned', priority: 'P2' },
+  // P3 - Medium Priority
+  { id: 'INC-2024-1841', time: '10:38 AM', title: 'Minor Obstruction on Platform', loc: 'Line B • Sector 7', status: 'Investigating', priority: 'P3' },
+  { id: 'INC-2024-1840', time: '10:20 AM', title: 'HVAC System Warning', loc: 'Union Station', status: 'Monitoring', priority: 'P3' },
+  { id: 'INC-2024-1839', time: '09:52 AM', title: 'Passenger Medical Emergency', loc: 'Line C • Station 15', status: 'Resolved', priority: 'P3' },
+  { id: 'INC-2024-1838', time: '09:35 AM', title: 'Ticket Machine Out of Service', loc: 'West Terminal', status: 'Parts Ordered', priority: 'P3' },
+  // P4 - Low Priority
+  { id: 'INC-2024-1837', time: '09:15 AM', title: 'Scheduled Maintenance', loc: 'Line A • Overnight', status: 'Planned', priority: 'P4' },
+  { id: 'INC-2024-1836', time: '08:45 AM', title: 'Platform Signage Update', loc: 'South Park Station', status: 'In Progress', priority: 'P4' },
+  { id: 'INC-2024-1835', time: '08:30 AM', title: 'Cleaning Required - Car 112', loc: 'Line B • Depot', status: 'Scheduled', priority: 'P4' },
+  { id: 'INC-2024-1834', time: '08:00 AM', title: 'Landscaping Work Notice', loc: 'Line D • Above Ground', status: 'Planned', priority: 'P4' },
+  { id: 'INC-2024-1833', time: '07:45 AM', title: 'Advertising Display Maintenance', loc: 'Central Station', status: 'Pending Parts', priority: 'P4' },
+  // Resolved
+  { id: 'INC-2024-1832', time: '07:30 AM', title: 'Minor Delay - Signal Issue', loc: 'Line A • Resolved', status: 'Resolved', priority: 'P4' },
+  { id: 'INC-2024-1831', time: '06:55 AM', title: 'Track Inspection Complete', loc: 'Line C • Full Line', status: 'Resolved', priority: 'P4' },
 ];
 
 export const NetworkOverview = () => {
@@ -21,25 +40,38 @@ export const NetworkOverview = () => {
            <h3 className="text-sm font-bold uppercase flex items-center gap-2">
              <span className="material-symbols-outlined text-rail-danger animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">campaign</span> Incident Feed
            </h3>
-           <span className="text-[10px] bg-rail-danger/20 text-rail-danger px-2.5 py-1 rounded-full font-bold border border-rail-danger/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]">2 CRITICAL</span>
+           <span className="text-[10px] bg-rail-danger/20 text-rail-danger px-2.5 py-1 rounded-full font-bold border border-rail-danger/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]">3 CRITICAL</span>
         </div>
         <div className="flex-1 overflow-y-auto p-3 space-y-2">
            {incidents.map((inc, i) => (
              <div key={i} className={`p-3 rounded-xl backdrop-blur-sm border-l-2 transition-all duration-200 cursor-pointer group ${
                inc.priority === 'P1'
                  ? 'bg-rail-danger/10 border-rail-danger hover:bg-rail-danger/15 hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]'
-                 : inc.priority === 'P3'
-                   ? 'bg-rail-warning/10 border-rail-warning hover:bg-rail-warning/15 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]'
-                   : 'bg-rail-panel/60 border-quantix-purple hover:bg-rail-panel/80 hover:shadow-[0_0_15px_rgba(37,192,244,0.1)]'
+                 : inc.priority === 'P2'
+                   ? 'bg-orange-500/10 border-orange-500 hover:bg-orange-500/15 hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]'
+                   : inc.priority === 'P3'
+                     ? 'bg-rail-warning/10 border-rail-warning hover:bg-rail-warning/15 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]'
+                     : inc.status === 'Resolved'
+                       ? 'bg-rail-success/5 border-rail-success/50 hover:bg-rail-success/10 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]'
+                       : 'bg-rail-panel/60 border-quantix-purple hover:bg-rail-panel/80 hover:shadow-[0_0_15px_rgba(37,192,244,0.1)]'
              }`}>
                 <div className="flex justify-between items-start mb-1">
-                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${inc.priority === 'P1' ? 'bg-rail-danger text-black shadow-[0_0_8px_rgba(239,68,68,0.4)]' : 'bg-slate-700 text-white'}`}>{inc.priority}</span>
+                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                     inc.priority === 'P1' ? 'bg-rail-danger text-black shadow-[0_0_8px_rgba(239,68,68,0.4)]' :
+                     inc.priority === 'P2' ? 'bg-orange-500 text-white shadow-[0_0_8px_rgba(245,158,11,0.4)]' :
+                     'bg-slate-700 text-white'
+                   }`}>{inc.priority}</span>
                    <span className="text-[10px] font-mono text-slate-400">{inc.time}</span>
                 </div>
                 <h4 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">{inc.title}</h4>
                 <div className="flex justify-between items-center">
                    <span className="text-[10px] text-slate-500 uppercase">{inc.loc}</span>
-                   <span className={`text-[10px] font-bold ${inc.priority === 'P1' ? 'text-rail-danger' : 'text-slate-400'}`}>{inc.status}</span>
+                   <span className={`text-[10px] font-bold ${
+                     inc.priority === 'P1' ? 'text-rail-danger' :
+                     inc.priority === 'P2' ? 'text-orange-400' :
+                     inc.status === 'Resolved' ? 'text-rail-success' :
+                     'text-slate-400'
+                   }`}>{inc.status}</span>
                 </div>
              </div>
            ))}
