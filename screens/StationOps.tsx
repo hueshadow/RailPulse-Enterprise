@@ -59,10 +59,10 @@ export const StationOps = () => {
     const { t } = useTranslation();
     const [showHealthPanel, setShowHealthPanel] = useState(true);
     return (
-        <div className="flex h-full">
-            {/* Sidebar */}
-            <div className="w-72 bg-[#0f172a]/90 backdrop-blur-xl border-r border-white/10 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.3)]">
-                <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
+        <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
+            {/* Sidebar: Station Control */}
+            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm flex flex-col border-r border-quantix-border/50">
+                <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
                     <h2 className="text-lg font-bold text-white">Station Control</h2>
                     <p className="text-xs text-slate-400">Central Hub • Live Operations</p>
                 </div>
@@ -142,7 +142,7 @@ export const StationOps = () => {
             </div>
 
             {/* Main Area */}
-            <div className="flex-1 flex flex-col bg-[#020617] relative">
+            <div className="col-span-6 flex flex-col bg-[#050910] relative">
                  <div className="absolute top-4 left-4 z-10 flex gap-2">
                      <button className="glass px-4 py-2 rounded-lg text-sm text-white hover:bg-white/10 transition-all flex items-center gap-2">
                        <span className="material-symbols-outlined text-[18px]">layers</span>
@@ -188,9 +188,9 @@ export const StationOps = () => {
                  </div>
             </div>
 
-            {/* CCTV Sidebar */}
-            <div className="w-80 bg-[#0f172a]/90 backdrop-blur-xl border-l border-white/10 flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.3)]">
-                <div className="p-4 border-b border-white/10 flex justify-between items-center bg-gradient-to-r from-quantix-purple/5 to-transparent">
+            {/* CCTV Sidebar: Surveillance */}
+            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
+                <div className="p-4 border-b border-quantix-border/50 flex justify-between items-center bg-rail-panel/60 backdrop-blur-sm">
                     <h3 className="font-bold text-white text-sm uppercase flex items-center gap-2">
                       <span className="w-1 h-3 bg-rail-danger rounded-full"></span>
                       Surveillance
