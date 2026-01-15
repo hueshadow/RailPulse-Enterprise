@@ -28,11 +28,11 @@ const incidents = [
 export const NetworkOverview = () => {
   return (
     <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
-      {/* Left Sidebar: Incidents */}
-      <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm flex flex-col border-r border-quantix-border/50">
-        <div className="p-4 border-b border-quantix-border/50 flex justify-between items-center bg-rail-panel/60 backdrop-blur-sm">
-           <h3 className="text-sm font-bold uppercase flex items-center gap-2">
-             <span className="material-symbols-outlined text-rail-danger animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">campaign</span> Incident Feed
+      {/* Left: Incident Feed */}
+      <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 mr-0">
+        <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
+           <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
+             <span className="w-1 h-3 bg-rail-danger rounded-full animate-pulse"></span> Incident Feed
            </h3>
            <span className="text-[10px] bg-rail-danger/20 text-rail-danger px-2.5 py-1 rounded-full font-bold border border-rail-danger/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]">1 CRITICAL</span>
         </div>
@@ -70,7 +70,7 @@ export const NetworkOverview = () => {
              </div>
            ))}
         </div>
-        <div className="p-4 border-t border-quantix-border/50 bg-rail-panel/40 backdrop-blur-sm">
+        <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-sm">
           <h4 className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-2">
             <span className="w-1 h-3 bg-rail-danger rounded-full"></span>
             Alarm Trend (24h)
@@ -102,13 +102,14 @@ export const NetworkOverview = () => {
       </div>
 
       {/* Right: Stats */}
-      <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col p-4 gap-4">
-         <div className="glass-card p-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
+      <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 ml-0">
+         <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm">
+            <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
               <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
               Line Delays
             </h3>
-            <div className="space-y-3">
+         </div>
+         <div className="p-3 space-y-3">
                <div className="flex justify-between items-center p-2 rounded-lg hover:bg-white/5 transition-colors">
                   <div className="flex items-center gap-2 text-sm text-white">
                      <span className="size-2.5 rounded-full bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,0.5)]"></span> Line A
@@ -134,10 +135,8 @@ export const NetworkOverview = () => {
                   <span className="text-xs font-mono font-bold text-rail-success bg-rail-success/15 px-2 py-0.5 rounded-full border border-rail-success/30">On Time</span>
                </div>
             </div>
-         </div>
-
-         <div className="glass-card p-4 flex-1">
-             <h3 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
+         <div className="p-3 border-t border-white/10">
+             <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2 mb-3">
                <span className="w-1 h-3 bg-rail-warning rounded-full"></span>
                Crowding Top 5
              </h3>

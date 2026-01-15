@@ -9,9 +9,9 @@ const forecastData = [
 
 export const Forecasting = () => {
     return (
-        <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
+        <div className="flex h-full bg-[#050910]">
             {/* Main Charts Area */}
-            <div className="col-span-9 p-4 overflow-y-auto space-y-4 bg-[#050910]">
+            <div className="flex-1 p-4 overflow-y-auto space-y-4">
                  {/* Top Controls */}
                  <div className="flex justify-between items-end">
                      <div>
@@ -116,8 +116,8 @@ export const Forecasting = () => {
             </div>
 
             {/* Recommendations Panel */}
-            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
-                <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
+            <div className="glass-card rounded-xl flex flex-col overflow-hidden m-4 ml-0">
+                <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm">
                     <h2 className="text-lg font-bold text-white flex items-center gap-2">
                       <span className="material-symbols-outlined text-quantix-purple">auto_awesome</span>
                       AI Recommendations
