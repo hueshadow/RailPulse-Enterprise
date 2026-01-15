@@ -19,9 +19,9 @@ const AppContent = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-rail-dark flex items-center justify-center">
+      <div className="min-h-screen bg-quantix-black flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-rail-primary/30 border-t-rail-primary rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-quantix-purple/30 border-t-quantix-purple rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">加载中...</p>
         </div>
       </div>

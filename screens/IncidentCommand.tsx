@@ -5,7 +5,7 @@ export const IncidentCommand = () => {
     <div className="flex h-full">
       {/* Feed */}
       <aside className="w-80 bg-[#0f172a]/90 backdrop-blur-xl border-r border-white/10 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.3)]">
-        <div className="p-4 border-b border-white/10 bg-gradient-to-r from-rail-primary/5 to-transparent">
+        <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
             <h2 className="text-lg font-bold text-white">Incident Feed</h2>
             <div className="relative mt-2">
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
@@ -18,7 +18,7 @@ export const IncidentCommand = () => {
                     <span className="text-[10px] font-bold bg-rail-danger text-black px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(239,68,68,0.4)]">P1</span>
                     <span className="text-[10px] font-mono text-slate-400">00:14:22</span>
                 </div>
-                <h3 className="text-sm font-bold text-white group-hover:text-rail-primary transition-colors">Power Loss at Station 4</h3>
+                <h3 className="text-sm font-bold text-white group-hover:text-quantix-purple transition-colors">Power Loss at Station 4</h3>
                 <p className="text-xs text-slate-400 mt-1">Blue Line • Electrical</p>
             </div>
              <div className="p-3 backdrop-blur-sm border border-white/10 rounded-xl opacity-60 hover:opacity-100 cursor-pointer transition-all hover:bg-white/5">
@@ -61,14 +61,14 @@ export const IncidentCommand = () => {
                          <div key={step} className={`flex flex-col items-center gap-2 transition-all ${i < 3 ? 'opacity-100' : 'opacity-40'}`}>
                              <div className={`size-10 rounded-full flex items-center justify-center border-2 transition-all ${
                                i === 2
-                                 ? 'bg-rail-primary text-black border-rail-primary shadow-[0_0_25px_rgba(37,192,244,0.6)] scale-125 animate-glow-pulse'
+                                 ? 'bg-quantix-purple text-black border-quantix-purple shadow-[0_0_25px_rgba(37,192,244,0.6)] scale-125 animate-glow-pulse'
                                  : i < 2
                                    ? 'bg-rail-success/20 text-rail-success border-rail-success shadow-[0_0_10px_rgba(16,185,129,0.3)]'
                                    : 'bg-slate-800/80 backdrop-blur-sm border-slate-600 text-slate-400'
                              }`}>
                                  <span className="material-symbols-outlined text-[18px]">{i < 2 ? 'check' : i === 2 ? 'radar' : 'pending'}</span>
                              </div>
-                             <span className={`text-[10px] font-bold uppercase tracking-wider ${i === 2 ? 'text-rail-primary' : i < 2 ? 'text-rail-success' : 'text-slate-500'}`}>{step}</span>
+                             <span className={`text-[10px] font-bold uppercase tracking-wider ${i === 2 ? 'text-quantix-purple' : i < 2 ? 'text-rail-success' : 'text-slate-500'}`}>{step}</span>
                          </div>
                      ))}
                  </div>
@@ -89,10 +89,10 @@ export const IncidentCommand = () => {
              <div className="glass-card rounded-xl flex flex-col overflow-hidden">
                  <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
                      <h3 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
-                       <span className="w-1 h-3 bg-rail-primary rounded-full"></span>
+                       <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
                        Audit Trail
                      </h3>
-                     <button className="text-xs text-rail-primary hover:text-white transition-colors px-2 py-1 rounded hover:bg-rail-primary/10">Export</button>
+                     <button className="text-xs text-quantix-purple hover:text-white transition-colors px-2 py-1 rounded hover:bg-quantix-purple/10">Export</button>
                  </div>
                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
                      <div className="flex gap-3">
@@ -110,12 +110,12 @@ export const IncidentCommand = () => {
                      </div>
                       <div className="flex gap-3">
                          <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-primary rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
                          </div>
                          <div>
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:43:12</span>
-                                 <span className="text-[10px] uppercase bg-rail-primary/15 text-rail-primary px-1.5 py-0.5 rounded border border-rail-primary/30">User</span>
+                                 <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
                                  <span className="text-xs text-slate-400">Cmdr. H. Vance</span>
                              </div>
                              <p className="text-sm text-slate-300 mt-0.5">Initiated P1 Protocol. Incident created manually.</p>
@@ -128,7 +128,7 @@ export const IncidentCommand = () => {
 
       {/* Right Sidebar: Playbook */}
       <aside className="w-80 border-l border-white/10 bg-[#0f172a]/90 backdrop-blur-xl flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.3)]">
-          <div className="p-4 border-b border-white/10 bg-gradient-to-r from-rail-primary/5 to-transparent">
+          <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
               <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">SOP Playbook</h2>
               <div className="space-y-3">
                   <div className="p-3 bg-rail-success/10 backdrop-blur-sm border border-rail-success/30 rounded-xl flex gap-3 opacity-60">
@@ -139,10 +139,10 @@ export const IncidentCommand = () => {
                           <h4 className="text-sm font-bold text-rail-success line-through">Verify Visuals</h4>
                       </div>
                   </div>
-                   <div className="p-4 bg-rail-primary/10 backdrop-blur-sm border border-rail-primary/40 rounded-xl flex flex-col gap-3 shadow-[0_0_20px_rgba(37,192,244,0.15)] animate-glow-pulse">
+                   <div className="p-4 bg-quantix-purple/10 backdrop-blur-sm border border-quantix-purple/40 rounded-xl flex flex-col gap-3 shadow-[0_0_20px_rgba(37,192,244,0.15)] animate-glow-pulse">
                       <div className="flex gap-3">
-                        <div className="border-2 border-rail-primary text-rail-primary size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(37,192,244,0.3)]">
-                            <div className="size-2.5 bg-rail-primary rounded-sm"></div>
+                        <div className="border-2 border-quantix-purple text-quantix-purple size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(37,192,244,0.3)]">
+                            <div className="size-2.5 bg-quantix-purple rounded-sm"></div>
                         </div>
                         <div>
                             <h4 className="text-sm font-bold text-white">Isolate Power</h4>
@@ -164,7 +164,7 @@ export const IncidentCommand = () => {
                    </div>
                    <div className="flex-1 p-3 space-y-2 overflow-y-auto">
                        <div className="bg-white/5 backdrop-blur-sm p-2.5 rounded-xl rounded-tl-none border border-white/5">
-                           <p className="text-[10px] text-rail-primary font-bold">J. Doe (Site)</p>
+                           <p className="text-[10px] text-quantix-purple font-bold">J. Doe (Site)</p>
                            <p className="text-xs text-slate-300">Team arriving at substation in 2 mins.</p>
                        </div>
                    </div>

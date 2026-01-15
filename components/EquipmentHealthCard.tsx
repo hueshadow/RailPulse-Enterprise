@@ -141,7 +141,7 @@ export const EquipmentHealthCard: React.FC<EquipmentHealthCardProps> = ({
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-white group-hover:text-rail-primary transition-colors">
+            <h3 className="text-sm font-semibold text-white group-hover:text-quantix-purple transition-colors">
               {equipment.name}
             </h3>
             <p className="text-xs text-gray-500">{t(`equipment.types.${equipment.type}`)}</p>
@@ -179,9 +179,9 @@ export const EquipmentHealthCard: React.FC<EquipmentHealthCardProps> = ({
               </span>
             </div>
             {/* Progress bar for hours (assume 50000h lifecycle) */}
-            <div className="mt-1.5 h-1.5 bg-rail-border/50 rounded-full overflow-hidden">
+            <div className="mt-1.5 h-1.5 bg-quantix-border/50 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-rail-primary to-cyan-400 rounded-full"
+                className="h-full bg-gradient-to-r from-quantix-purple to-cyan-400 rounded-full"
                 style={{ width: `${Math.min((equipment.operationHours / 50000) * 100, 100)}%` }}
               />
             </div>
@@ -204,7 +204,7 @@ export const EquipmentHealthCard: React.FC<EquipmentHealthCardProps> = ({
       </div>
 
       {/* Footer - Maintenance info */}
-      <div className="mt-4 pt-3 border-t border-rail-border/30 flex items-center justify-between text-xs">
+      <div className="mt-4 pt-3 border-t border-quantix-border/30 flex items-center justify-between text-xs">
         <div className="text-gray-500">
           <span>{t('equipment.lastMaintenance')}: </span>
           <span className="text-gray-400">{formatDate(equipment.lastMaintenance)}</span>

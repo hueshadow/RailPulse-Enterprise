@@ -11,7 +11,7 @@ export const LineDetail = () => {
            <h1 className="text-xl font-bold text-white">BLUE LINE <span className="text-slate-400 font-normal text-lg">– Live Monitor</span></h1>
            <div className="flex gap-2">
                <button className="px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-xs text-white hover:bg-white/10 hover:border-white/20 transition-all">All Stations</button>
-               <button className="px-4 py-1.5 rounded-lg bg-rail-primary/15 backdrop-blur-sm border border-rail-primary/30 text-xs text-rail-primary hover:bg-rail-primary/25 transition-all shadow-[0_0_10px_rgba(37,192,244,0.1)]">Northbound</button>
+               <button className="px-4 py-1.5 rounded-lg bg-quantix-purple/15 backdrop-blur-sm border border-quantix-purple/30 text-xs text-quantix-purple hover:bg-quantix-purple/25 transition-all shadow-[0_0_10px_rgba(37,192,244,0.1)]">Northbound</button>
            </div>
        </div>
 
@@ -19,17 +19,17 @@ export const LineDetail = () => {
        <div className="glass-card rounded-xl p-8 mb-6 relative overflow-hidden h-40 flex items-center">
             {/* Track */}
             <div className="w-full h-2 bg-slate-700/60 rounded-full relative backdrop-blur-sm">
-                 <div className="absolute left-0 top-0 h-full bg-rail-primary/50 w-[65%] rounded-full shadow-[0_0_10px_rgba(37,192,244,0.3)]"></div>
+                 <div className="absolute left-0 top-0 h-full bg-quantix-purple/50 w-[65%] rounded-full shadow-[0_0_10px_rgba(37,192,244,0.3)]"></div>
                  <div className="absolute left-[65%] top-0 h-full bg-rail-warning/60 w-[15%] rounded-full animate-pulse shadow-[0_0_15px_rgba(245,158,11,0.5)]"></div>
             </div>
 
             {/* Stations */}
             {[5, 25, 50, 70, 95].map((pos, i) => (
                 <div key={i} className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer" style={{left: `${pos}%`}}>
-                     <div className={`size-5 rounded-full border-2 border-rail-primary transition-all duration-200 ${
+                     <div className={`size-5 rounded-full border-2 border-quantix-purple transition-all duration-200 ${
                        pos === 50
-                         ? 'bg-white size-6 border-[3px] shadow-[0_0_20px_rgba(37,192,244,0.7)] ring-4 ring-rail-primary/20'
-                         : 'bg-[#0B1116] group-hover:bg-rail-primary group-hover:shadow-[0_0_12px_rgba(37,192,244,0.5)]'
+                         ? 'bg-white size-6 border-[3px] shadow-[0_0_20px_rgba(37,192,244,0.7)] ring-4 ring-quantix-purple/20'
+                         : 'bg-[#0B1116] group-hover:bg-quantix-purple group-hover:shadow-[0_0_12px_rgba(37,192,244,0.5)]'
                      }`}></div>
                      <span className={`absolute top-6 text-xs font-medium whitespace-nowrap ${pos === 50 ? 'text-white font-bold' : 'text-slate-500 group-hover:text-white transition-colors'}`}>
                         {['South Gateway', 'Market Dist', 'Central Station', 'Tech Park', 'North Harbor'][i]}
@@ -57,8 +57,8 @@ export const LineDetail = () => {
             {/* Trains */}
             {[15, 42, 85].map((pos, i) => (
                 <div key={i} className="absolute top-1/2 -translate-y-[12px] flex flex-col items-center z-20" style={{left: `${pos}%`}}>
-                    <div className="bg-[#0B1116]/80 backdrop-blur-sm border border-rail-primary text-rail-primary px-2 py-1 rounded text-[10px] font-mono mb-1 shadow-[0_0_15px_rgba(37,192,244,0.4)]">TR-{104+i}</div>
-                    <div className="w-10 h-5 bg-gradient-to-r from-rail-primary to-[#1a9cc9] rounded flex items-center justify-center shadow-[0_0_15px_rgba(37,192,244,0.6)]">
+                    <div className="bg-[#0B1116]/80 backdrop-blur-sm border border-quantix-purple text-quantix-purple px-2 py-1 rounded text-[10px] font-mono mb-1 shadow-[0_0_15px_rgba(37,192,244,0.4)]">TR-{104+i}</div>
+                    <div className="w-10 h-5 bg-gradient-to-r from-quantix-purple to-[#1a9cc9] rounded flex items-center justify-center shadow-[0_0_15px_rgba(37,192,244,0.6)]">
                          <span className="material-symbols-outlined text-black text-[16px] rotate-90 font-bold">arrow_right_alt</span>
                     </div>
                 </div>
@@ -73,10 +73,10 @@ export const LineDetail = () => {
            <div className="glass-card p-5 h-64 flex flex-col">
                <div className="flex justify-between items-center mb-4">
                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                     <span className="w-1 h-4 bg-rail-primary rounded-full"></span>
+                     <span className="w-1 h-4 bg-quantix-purple rounded-full"></span>
                      Punctuality Trend (7d)
                    </h3>
-                   <span className="text-xs text-rail-primary font-mono bg-rail-primary/10 px-2 py-1 rounded border border-rail-primary/20">98.2%</span>
+                   <span className="text-xs text-quantix-purple font-mono bg-quantix-purple/10 px-2 py-1 rounded border border-quantix-purple/20">98.2%</span>
                </div>
                <div className="flex-1">
                     <ResponsiveContainer width="100%" height="100%">
@@ -124,7 +124,7 @@ export const LineDetail = () => {
                          <path d="M0 30 Q50 10 100 25 L100 45 Q50 30 0 40 Z" fill="#9cb2ba" fillOpacity="0.1" />
                          <path d="M0 35 Q50 20 100 35" fill="none" stroke="#fff" strokeDasharray="3,2" strokeWidth="1.5" />
                     </svg>
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-2 py-1 rounded text-[10px] text-rail-primary font-mono">Peak: 18:45</div>
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-2 py-1 rounded text-[10px] text-quantix-purple font-mono">Peak: 18:45</div>
                 </div>
            </div>
        </div>

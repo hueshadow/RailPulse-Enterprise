@@ -62,14 +62,14 @@ export const StationOps = () => {
         <div className="flex h-full">
             {/* Sidebar */}
             <div className="w-72 bg-[#0f172a]/90 backdrop-blur-xl border-r border-white/10 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.3)]">
-                <div className="p-4 border-b border-white/10 bg-gradient-to-r from-rail-primary/5 to-transparent">
+                <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
                     <h2 className="text-lg font-bold text-white">Station Control</h2>
                     <p className="text-xs text-slate-400">Central Hub • Live Operations</p>
                 </div>
                 <div className="p-4 space-y-4 overflow-y-auto">
                     <div>
                         <h3 className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-2">
-                          <span className="w-1 h-3 bg-rail-primary rounded-full"></span>
+                          <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
                           Staff Dispatch
                         </h3>
                         <div className="space-y-2">
@@ -78,7 +78,7 @@ export const StationOps = () => {
                                      AS <div className="absolute -bottom-0.5 -right-0.5 size-2.5 bg-rail-success border-2 border-[#151e22] rounded-full shadow-[0_0_6px_rgba(16,185,129,0.6)]"></div>
                                  </div>
                                  <div className="flex-1 min-w-0">
-                                     <div className="text-sm font-bold text-white group-hover:text-rail-primary transition-colors">A. Smith</div>
+                                     <div className="text-sm font-bold text-white group-hover:text-quantix-purple transition-colors">A. Smith</div>
                                      <div className="text-xs text-slate-400 truncate">Security • Plat 1</div>
                                  </div>
                              </div>
@@ -87,7 +87,7 @@ export const StationOps = () => {
                                      MK <div className="absolute -bottom-0.5 -right-0.5 size-2.5 bg-rail-warning border-2 border-[#151e22] rounded-full animate-pulse shadow-[0_0_6px_rgba(245,158,11,0.6)]"></div>
                                  </div>
                                  <div className="flex-1 min-w-0">
-                                     <div className="text-sm font-bold text-white group-hover:text-rail-primary transition-colors">M. Kim</div>
+                                     <div className="text-sm font-bold text-white group-hover:text-quantix-purple transition-colors">M. Kim</div>
                                      <div className="text-xs text-slate-400 truncate">Maint • Esc UP-2</div>
                                  </div>
                              </div>
@@ -120,12 +120,12 @@ export const StationOps = () => {
                     <div className="mt-4">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
-                            <span className="w-1 h-3 bg-rail-primary rounded-full"></span>
+                            <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
                             Equipment Health
                           </h3>
                           <button
                             onClick={() => setShowHealthPanel(!showHealthPanel)}
-                            className="text-xs text-rail-primary hover:text-rail-primary/80"
+                            className="text-xs text-quantix-purple hover:text-quantix-purple/80"
                           >
                             {showHealthPanel ? 'Hide' : 'Show'}
                           </button>
@@ -190,12 +190,12 @@ export const StationOps = () => {
 
             {/* CCTV Sidebar */}
             <div className="w-80 bg-[#0f172a]/90 backdrop-blur-xl border-l border-white/10 flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.3)]">
-                <div className="p-4 border-b border-white/10 flex justify-between items-center bg-gradient-to-r from-rail-primary/5 to-transparent">
+                <div className="p-4 border-b border-white/10 flex justify-between items-center bg-gradient-to-r from-quantix-purple/5 to-transparent">
                     <h3 className="font-bold text-white text-sm uppercase flex items-center gap-2">
                       <span className="w-1 h-3 bg-rail-danger rounded-full"></span>
                       Surveillance
                     </h3>
-                    <span className="material-symbols-outlined text-rail-primary cursor-pointer hover:scale-110 transition-transform">grid_view</span>
+                    <span className="material-symbols-outlined text-quantix-purple cursor-pointer hover:scale-110 transition-transform">grid_view</span>
                 </div>
                 <div className="p-3 space-y-3 overflow-y-auto flex-1">
                     <div className="glass-card-danger rounded-xl relative overflow-hidden group">

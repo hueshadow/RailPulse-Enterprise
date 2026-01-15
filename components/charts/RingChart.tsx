@@ -23,7 +23,7 @@ const COLOR_CONFIG = {
     stroke: '#25c0f4',
     gradient: ['#25c0f4', '#1a9cc9'],
     glow: 'rgba(37, 192, 244, 0.5)',
-    text: 'text-rail-primary',
+    text: 'text-quantix-purple',
   },
   danger: {
     stroke: '#ef4444',

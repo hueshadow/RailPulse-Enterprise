@@ -31,13 +31,16 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-rail-dark flex items-center justify-center relative overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 login-bg-grid opacity-50" />
+    <div className="min-h-screen bg-quantix-black flex items-center justify-center relative overflow-hidden">
+      {/* 极光背景效果 */}
+      <div className="quantix-aurora-bg">
+        <div className="quantix-aurora quantix-aurora-1"></div>
+        <div className="quantix-aurora quantix-aurora-2"></div>
+        <div className="quantix-aurora quantix-aurora-3"></div>
+      </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rail-primary/10 rounded-full blur-[100px] animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[80px] animate-pulse-slow" style={{ animationDelay: '1s' }} />
+      {/* Animated grid background */}
+      <div className="absolute inset-0 login-bg-grid opacity-30" />
 
       {/* Language switcher */}
       <div className="absolute top-6 right-6 z-20">
@@ -50,7 +53,7 @@ export const Login: React.FC = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rail-primary to-cyan-400 flex items-center justify-center shadow-glow-primary">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-quantix-purple to-cyan-400 flex items-center justify-center shadow-[0_0_20px_rgba(46,92,255,0.4)]">
                 <span className="material-symbols-outlined text-2xl text-black font-bold">train</span>
               </div>
               <div>
@@ -119,7 +122,7 @@ export const Login: React.FC = () => {
                   />
                   <div className={`w-5 h-5 rounded border-2 transition-all ${
                     remember
-                      ? 'bg-rail-primary border-rail-primary'
+                      ? 'bg-quantix-purple border-quantix-purple'
                       : 'border-gray-600 group-hover:border-gray-500'
                   }`}>
                     {remember && (
@@ -135,7 +138,7 @@ export const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="glass-button-solid w-full py-3 rounded-lg font-semibold text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="quantix-metal-button w-full py-3 rounded-lg font-semibold text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -152,14 +155,14 @@ export const Login: React.FC = () => {
           </form>
 
           {/* Demo accounts hint */}
-          <div className="mt-6 pt-6 border-t border-rail-border/50">
+          <div className="mt-6 pt-6 border-t border-quantix-border/50">
             <p className="text-xs text-gray-500 text-center mb-3">{t('auth.login.demoHint')}</p>
             <div className="grid grid-cols-3 gap-2">
               {['admin', 'dispatcher', 'analyst'].map((user) => (
                 <button
                   key={user}
                   onClick={() => { setUsername(user); setPassword(user); }}
-                  className="glass-button px-2 py-1.5 rounded text-xs hover:bg-rail-primary/20"
+                  className="glass-button px-2 py-1.5 rounded text-xs hover:bg-quantix-purple/20"
                 >
                   {user}
                 </button>

@@ -45,7 +45,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/5 transition-colors"
       >
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-rail-primary to-purple-500 flex items-center justify-center text-sm font-bold text-white">
+        <div className="w-8 h-8 rounded-full quantix-user-bubble flex items-center justify-center text-sm font-bold text-white">
           {user.displayName.charAt(0).toUpperCase()}
         </div>
         <div className="hidden md:block text-left">
@@ -61,7 +61,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
       {isOpen && (
         <div className="absolute right-0 top-full mt-2 w-64 glass-card rounded-xl p-2 shadow-glass-lg animate-scale-in z-50">
           {/* User Info Header */}
-          <div className="px-3 py-2 border-b border-rail-border/50 mb-2">
+          <div className="px-3 py-2 border-b border-quantix-border/50 mb-2">
             <p className="text-white font-medium">{user.displayName}</p>
             <p className="text-xs text-gray-400">{user.email}</p>
           </div>
@@ -72,7 +72,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
               onClick={handleUserCenter}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-left group"
             >
-              <span className="material-symbols-outlined text-gray-400 group-hover:text-rail-primary transition-colors">account_circle</span>
+              <span className="material-symbols-outlined text-gray-400 group-hover:text-quantix-purple transition-colors">account_circle</span>
               <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
                 {t('auth.userMenu.userCenter')}
               </span>
@@ -81,7 +81,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
             <button
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-left group"
             >
-              <span className="material-symbols-outlined text-gray-400 group-hover:text-rail-primary transition-colors">settings</span>
+              <span className="material-symbols-outlined text-gray-400 group-hover:text-quantix-purple transition-colors">settings</span>
               <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
                 {t('auth.userMenu.settings')}
               </span>
@@ -90,7 +90,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
             <button
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-left group"
             >
-              <span className="material-symbols-outlined text-gray-400 group-hover:text-rail-primary transition-colors">help</span>
+              <span className="material-symbols-outlined text-gray-400 group-hover:text-quantix-purple transition-colors">help</span>
               <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
                 {t('auth.userMenu.help')}
               </span>
@@ -98,7 +98,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate }) => {
           </div>
 
           {/* Logout */}
-          <div className="border-t border-rail-border/50 mt-2 pt-2">
+          <div className="border-t border-quantix-border/50 mt-2 pt-2">
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-rail-danger/10 transition-colors text-left group"

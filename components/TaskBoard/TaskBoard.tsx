@@ -37,9 +37,9 @@ const PRIORITY_CONFIG = {
     label: 'High'
   },
   P3: {
-    bgClass: 'bg-rail-primary/20',
-    textClass: 'text-rail-primary',
-    borderClass: 'border-l-rail-primary',
+    bgClass: 'bg-quantix-purple/20',
+    textClass: 'text-quantix-purple',
+    borderClass: 'border-l-quantix-purple',
     label: 'Normal'
   }
 };
@@ -117,7 +117,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-between text-[10px] text-gray-500 mt-2 pt-2 border-t border-rail-border/30">
+      <div className="flex items-center justify-between text-[10px] text-gray-500 mt-2 pt-2 border-t border-quantix-border/30">
         <div className="flex items-center gap-1">
           <span className="material-symbols-outlined text-xs">location_on</span>
           <span className="truncate max-w-[80px]">{task.location}</span>
@@ -128,7 +128,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       {/* Assignee */}
       {task.assignee && (
         <div className="flex items-center gap-1.5 mt-2">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-rail-primary to-purple-500 flex items-center justify-center text-[10px] font-bold text-white">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-quantix-purple to-purple-500 flex items-center justify-center text-[10px] font-bold text-white">
             {task.assignee.charAt(0).toUpperCase()}
           </div>
           <span className="text-xs text-gray-400">{task.assignee}</span>
@@ -174,7 +174,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
   };
 
   const colorConfig = {
-    primary: { bg: 'bg-rail-primary/10', border: 'border-rail-primary/30', text: 'text-rail-primary' },
+    primary: { bg: 'bg-quantix-purple/10', border: 'border-quantix-purple/30', text: 'text-quantix-purple' },
     warning: { bg: 'bg-rail-warning/10', border: 'border-rail-warning/30', text: 'text-rail-warning' },
     success: { bg: 'bg-rail-success/10', border: 'border-rail-success/30', text: 'text-rail-success' }
   };
@@ -186,14 +186,14 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
       className={`
         flex flex-col h-full rounded-xl overflow-hidden
         transition-all duration-200
-        ${isDragOver && isDropTarget ? 'ring-2 ring-rail-primary/50 bg-rail-primary/5' : ''}
+        ${isDragOver && isDropTarget ? 'ring-2 ring-quantix-purple/50 bg-quantix-purple/5' : ''}
       `}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
       {/* Column Header */}
-      <div className={`glass-light p-3 border-b border-rail-border/30`}>
+      <div className={`glass-light p-3 border-b border-quantix-border/30`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className={`material-symbols-outlined ${config.text} text-lg`}>{column.icon}</span>
@@ -206,11 +206,11 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
       </div>
 
       {/* Tasks Container */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3 no-scrollbar bg-rail-dark/30">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3 no-scrollbar bg-quantix-black/30">
         {column.tasks.length === 0 ? (
           <div className={`
             h-24 rounded-lg border-2 border-dashed
-            ${isDragOver ? 'border-rail-primary/50 bg-rail-primary/5' : 'border-rail-border/30'}
+            ${isDragOver ? 'border-quantix-purple/50 bg-quantix-purple/5' : 'border-quantix-border/30'}
             flex items-center justify-center
             transition-all duration-200
           `}>

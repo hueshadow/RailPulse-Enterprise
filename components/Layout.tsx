@@ -25,7 +25,7 @@ const NavItem = ({
     onClick={onClick}
     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 ${
       active
-        ? 'bg-rail-primary/15 text-rail-primary border border-rail-primary/30 shadow-[0_0_20px_rgba(37,192,244,0.15)] backdrop-blur-sm'
+        ? 'quantix-nav-active text-quantix-purple'
         : 'text-slate-400 hover:text-white hover:bg-white/5 hover:backdrop-blur-sm'
     }`}
   >
@@ -39,20 +39,27 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
   const { t } = useTranslation();
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-rail-dark selection:bg-rail-primary selection:text-black">
+    <div className="relative flex h-screen w-full overflow-hidden bg-quantix-black selection:bg-quantix-purple selection:text-black">
+      {/* 极光背景效果 */}
+      <div className="quantix-aurora-bg">
+        <div className="quantix-aurora quantix-aurora-1"></div>
+        <div className="quantix-aurora quantix-aurora-2"></div>
+        <div className="quantix-aurora quantix-aurora-3"></div>
+      </div>
+
       {/* Sidebar */}
       <aside
-        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 glass-sidebar flex flex-col transition-all duration-300 z-50`}
+        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 quantix-sidebar flex flex-col transition-all duration-300 z-50`}
       >
-        <div className="h-16 flex items-center px-4 border-b border-rail-border/50 bg-gradient-to-r from-rail-primary/5 to-transparent">
+        <div className="h-16 flex items-center px-4 border-b border-quantix-border/50 bg-gradient-to-r from-quantix-purple/5 to-transparent">
           <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
-            <div className="min-w-[32px] h-8 flex items-center justify-center bg-gradient-to-br from-rail-primary to-[#1a9cc9] rounded text-black font-bold shadow-[0_0_15px_rgba(37,192,244,0.4)]">
+            <div className="min-w-[32px] h-8 flex items-center justify-center bg-gradient-to-br from-quantix-purple to-cyan-400 rounded text-black font-bold shadow-[0_0_20px_rgba(46,92,255,0.4)]">
               <span className="material-symbols-outlined">train</span>
             </div>
             {sidebarOpen && (
               <div className="flex flex-col">
                 <span className="font-bold text-white leading-none">RailPulse</span>
-                <span className="text-[10px] text-rail-primary font-mono tracking-wider">OCC-SYSTEM</span>
+                <span className="text-[10px] text-quantix-purple font-mono tracking-wider">OCC-SYSTEM</span>
               </div>
             )}
           </div>
@@ -72,7 +79,7 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
           <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? t('nav.fieldService') : ""} onClick={() => onScreenChange('field-service')} />
         </nav>
 
-        <div className="p-3 border-t border-rail-border/50">
+        <div className="p-3 border-t border-quantix-border/50">
            <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="w-full flex items-center justify-center p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all"
@@ -94,7 +101,7 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
            <div className="flex items-center gap-6">
               <div className="hidden md:flex items-center gap-4 text-xs font-mono text-slate-400">
                 <span>UTC 14:42:05</span>
-                <span className="text-rail-primary">OCT 24, 2023</span>
+                <span className="text-quantix-purple">OCT 24, 2023</span>
               </div>
               <div className="h-6 w-px bg-white/10"></div>
               <LanguageSwitcher />

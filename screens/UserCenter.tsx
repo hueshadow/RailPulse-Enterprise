@@ -72,7 +72,7 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate }) => {
             <div className="flex flex-col items-center text-center">
               {/* Avatar */}
               <div className="avatar-ring mb-4">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-rail-primary to-purple-500 flex items-center justify-center text-3xl font-bold text-white">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-quantix-purple to-purple-500 flex items-center justify-center text-3xl font-bold text-white">
                   {user.displayName.charAt(0).toUpperCase()}
                 </div>
               </div>
@@ -81,13 +81,13 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate }) => {
               <p className="text-gray-400 text-sm">@{user.username}</p>
 
               {/* Role Badge */}
-              <div className="mt-3 px-3 py-1 rounded-full bg-rail-primary/20 border border-rail-primary/30 text-rail-primary text-sm font-medium">
+              <div className="mt-3 px-3 py-1 rounded-full bg-quantix-purple/20 border border-quantix-purple/30 text-quantix-purple text-sm font-medium">
                 {t(ROLE_LABELS[user.role])}
               </div>
             </div>
 
             {/* User Details */}
-            <div className="mt-6 pt-6 border-t border-rail-border/50 space-y-4">
+            <div className="mt-6 pt-6 border-t border-quantix-border/50 space-y-4">
               <div className="flex items-center gap-3 text-sm">
                 <span className="material-symbols-outlined text-gray-500 text-lg">mail</span>
                 <span className="text-gray-300">{user.email}</span>
@@ -131,7 +131,7 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate }) => {
         <div className="col-span-12 lg:col-span-4 space-y-6">
           <div className="glass-card p-6">
             <div className="flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-rail-primary">security</span>
+              <span className="material-symbols-outlined text-quantix-purple">security</span>
               <h3 className="text-lg font-semibold text-white">{t('auth.userCenter.permissions')}</h3>
             </div>
             <p className="text-gray-400 text-sm mb-4">{t('auth.userCenter.permissionsDesc')}</p>
@@ -177,7 +177,7 @@ export const UserCenter: React.FC<UserCenterProps> = ({ onNavigate }) => {
         <div className="col-span-12 lg:col-span-4 space-y-6">
           <div className="glass-card p-6">
             <div className="flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-rail-primary">history</span>
+              <span className="material-symbols-outlined text-quantix-purple">history</span>
               <h3 className="text-lg font-semibold text-white">{t('auth.userCenter.activityLog')}</h3>
             </div>
 

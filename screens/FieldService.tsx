@@ -98,7 +98,7 @@ export const FieldService = () => {
                   <p className="text-xs text-gray-400">Drag and drop to update task status</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-1 rounded-full bg-rail-primary/20 text-rail-primary text-xs font-medium">
+                  <span className="px-2 py-1 rounded-full bg-quantix-purple/20 text-quantix-purple text-xs font-medium">
                     {taskColumns.reduce((acc, col) => acc + col.tasks.length, 0)} tasks
                   </span>
                 </div>
@@ -120,7 +120,7 @@ export const FieldService = () => {
                 <div className="h-14 bg-[#162024]/90 backdrop-blur-xl flex items-center justify-between px-4 border-b border-white/10 shrink-0 z-20">
                     <div className="flex items-center gap-2">
                         {tab !== 'inbox' && (
-                            <button onClick={() => setTab('inbox')} className="text-white hover:text-rail-primary transition-colors p-1 rounded-lg hover:bg-white/5">
+                            <button onClick={() => setTab('inbox')} className="text-white hover:text-quantix-purple transition-colors p-1 rounded-lg hover:bg-white/5">
                               <span className="material-symbols-outlined">arrow_back</span>
                             </button>
                         )}
@@ -137,7 +137,7 @@ export const FieldService = () => {
                         <div className="p-4 space-y-4">
                             <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2">
                                 <div className="min-w-[120px] p-3 rounded-xl glass-card-primary">
-                                    <span className="material-symbols-outlined text-2xl text-rail-primary mb-1 drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]">assignment</span>
+                                    <span className="material-symbols-outlined text-2xl text-quantix-purple mb-1 drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]">assignment</span>
                                     <div className="text-xs text-slate-400">Active</div>
                                     <div className="text-xl font-bold text-white">3</div>
                                 </div>
@@ -161,7 +161,7 @@ export const FieldService = () => {
                                             <span className="material-symbols-outlined">fork_right</span>
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-bold group-hover:text-rail-primary transition-colors">Switch Motor Repair</h4>
+                                            <h4 className="text-white font-bold group-hover:text-quantix-purple transition-colors">Switch Motor Repair</h4>
                                             <p className="text-xs text-slate-500">Sector 7G, Track 4</p>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@ export const FieldService = () => {
                                     <div className="text-rail-danger text-xs font-bold flex items-center gap-1">
                                         <span className="material-symbols-outlined text-[14px]">timer</span> 22m left
                                     </div>
-                                    <button className="text-rail-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                    <button className="text-quantix-purple text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">
                                         Details <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                                     </button>
                                 </div>
@@ -185,7 +185,7 @@ export const FieldService = () => {
                                             <span className="material-symbols-outlined">sensors</span>
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-bold group-hover:text-rail-primary transition-colors">Sensor Calibration</h4>
+                                            <h4 className="text-white font-bold group-hover:text-quantix-purple transition-colors">Sensor Calibration</h4>
                                             <p className="text-xs text-slate-500">Yard B, Gate 3</p>
                                         </div>
                                     </div>
@@ -201,31 +201,31 @@ export const FieldService = () => {
                             <div className="glass-card rounded-xl p-4">
                                 <div className="flex justify-between items-center mb-2">
                                     <h3 className="text-lg font-bold text-white">Current Status</h3>
-                                    <span className="text-rail-primary text-xs font-bold bg-rail-primary/15 px-2.5 py-1 rounded-full border border-rail-primary/30 shadow-[0_0_10px_rgba(37,192,244,0.2)]">On Site</span>
+                                    <span className="text-quantix-purple text-xs font-bold bg-quantix-purple/15 px-2.5 py-1 rounded-full border border-quantix-purple/30 shadow-[0_0_10px_rgba(37,192,244,0.2)]">On Site</span>
                                 </div>
                                 <div className="relative pl-4 border-l border-slate-700/50 space-y-6 my-2">
                                     <div className="relative">
-                                        <div className="absolute -left-[19px] top-1 size-2.5 rounded-full bg-rail-primary ring-4 ring-[#151e22] shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                                        <div className="absolute -left-[19px] top-1 size-2.5 rounded-full bg-quantix-purple ring-4 ring-[#151e22] shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
                                         <p className="text-sm font-bold text-white">Assigned</p>
                                         <p className="text-xs text-slate-500">08:35 AM • Dispatch</p>
                                     </div>
                                     <div className="relative">
-                                        <div className="absolute -left-[21px] top-0 size-3.5 rounded-full bg-rail-primary/30 animate-ping"></div>
-                                        <div className="absolute -left-[19px] top-1 size-2.5 rounded-full bg-rail-primary ring-4 ring-[#151e22] shadow-[0_0_10px_rgba(37,192,244,0.6)]"></div>
-                                        <p className="text-sm font-bold text-rail-primary">On Site</p>
+                                        <div className="absolute -left-[21px] top-0 size-3.5 rounded-full bg-quantix-purple/30 animate-ping"></div>
+                                        <div className="absolute -left-[19px] top-1 size-2.5 rounded-full bg-quantix-purple ring-4 ring-[#151e22] shadow-[0_0_10px_rgba(37,192,244,0.6)]"></div>
+                                        <p className="text-sm font-bold text-quantix-purple">On Site</p>
                                         <p className="text-xs text-slate-500">10:05 AM • Current</p>
                                     </div>
                                 </div>
                                 <div className="mt-4 pt-4 border-t border-white/5">
                                     <div className="h-2 w-full bg-slate-800/60 rounded-full overflow-hidden backdrop-blur-sm">
-                                        <div className="h-full bg-gradient-to-r from-rail-primary to-[#1a9cc9] w-3/4 rounded-full shadow-[0_0_10px_rgba(37,192,244,0.5)]"></div>
+                                        <div className="h-full bg-gradient-to-r from-quantix-purple to-[#1a9cc9] w-3/4 rounded-full shadow-[0_0_10px_rgba(37,192,244,0.5)]"></div>
                                     </div>
                                 </div>
                             </div>
 
                              <div className="glass-card rounded-xl p-4">
                                 <h3 className="text-white font-bold mb-2 flex items-center gap-2">
-                                  <span className="w-1 h-3 bg-rail-primary rounded-full"></span>
+                                  <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
                                   Description
                                 </h3>
                                 <p className="text-sm text-slate-400 leading-relaxed">
@@ -235,11 +235,11 @@ export const FieldService = () => {
 
                              <div className="grid grid-cols-2 gap-3">
                                 <button className="p-4 rounded-xl glass-card flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all group">
-                                    <span className="material-symbols-outlined text-white group-hover:text-rail-primary transition-colors">menu_book</span>
+                                    <span className="material-symbols-outlined text-white group-hover:text-quantix-purple transition-colors">menu_book</span>
                                     <span className="text-xs text-slate-300 group-hover:text-white transition-colors">Manuals</span>
                                 </button>
                                 <button className="p-4 rounded-xl glass-card flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all group">
-                                    <span className="material-symbols-outlined text-white group-hover:text-rail-primary transition-colors">add_a_photo</span>
+                                    <span className="material-symbols-outlined text-white group-hover:text-quantix-purple transition-colors">add_a_photo</span>
                                     <span className="text-xs text-slate-300 group-hover:text-white transition-colors">Evidence</span>
                                 </button>
                              </div>
@@ -252,16 +252,16 @@ export const FieldService = () => {
                              <div className="absolute inset-0 z-0 opacity-40 bg-cover bg-center" style={{backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuDC5iCXzdliIE14Zzd52lZPVkco5fYpHTBMHit5NvdHx34LOMPb6aAv9d-mMQfq22HJYM-QuyAgUSH4hT3S5t78ETuP-AJaKY-GJQCoa4DSdrOr9DgBg8NPgtrmYfhiCX9nDgAEZuXrzdTJVfLGbRNtAlb_tPP-_tTLR2J3-YqT3D0s5Nr6OjwRX3XhzyYwAxfnMLHA8njBsNzzn47Dv-XAv81sa7WKH7IcbsLCO3mlCgE4r0BdFdQNnLKTy3y1ccLOq29QKaarQFE')`}}></div>
                              <div className="absolute inset-0 bg-gradient-to-b from-[#101e22] via-transparent to-[#101e22] z-10"></div>
 
-                             <div className="relative z-20 w-64 h-64 border-2 border-rail-primary/60 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(37,192,244,0.4),inset_0_0_20px_rgba(37,192,244,0.1)] bg-rail-primary/5 backdrop-blur-sm">
-                                 <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-rail-primary rounded-tl-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
-                                 <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-rail-primary rounded-tr-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
-                                 <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-rail-primary rounded-bl-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
-                                 <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-rail-primary rounded-br-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
-                                 <div className="w-full h-1 bg-gradient-to-r from-transparent via-rail-primary to-transparent absolute top-0 animate-[scan_2s_linear_infinite] shadow-[0_0_15px_#25c0f4,0_0_30px_#25c0f4]"></div>
+                             <div className="relative z-20 w-64 h-64 border-2 border-quantix-purple/60 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(37,192,244,0.4),inset_0_0_20px_rgba(37,192,244,0.1)] bg-quantix-purple/5 backdrop-blur-sm">
+                                 <div className="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-quantix-purple rounded-tl-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
+                                 <div className="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-quantix-purple rounded-tr-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
+                                 <div className="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-quantix-purple rounded-bl-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
+                                 <div className="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-quantix-purple rounded-br-xl shadow-[0_0_15px_rgba(37,192,244,0.5)]"></div>
+                                 <div className="w-full h-1 bg-gradient-to-r from-transparent via-quantix-purple to-transparent absolute top-0 animate-[scan_2s_linear_infinite] shadow-[0_0_15px_#25c0f4,0_0_30px_#25c0f4]"></div>
                                  <style>{`@keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }`}</style>
                              </div>
 
-                             <div className="relative z-20 mt-8 bg-gradient-to-r from-rail-primary to-[#1a9cc9] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_20px_rgba(37,192,244,0.4)] flex items-center gap-2">
+                             <div className="relative z-20 mt-8 bg-gradient-to-r from-quantix-purple to-[#1a9cc9] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_4px_20px_rgba(37,192,244,0.4)] flex items-center gap-2">
                                 <span className="material-symbols-outlined text-lg">check_circle</span> Asset Identified
                              </div>
                         </div>
@@ -270,11 +270,11 @@ export const FieldService = () => {
 
                 {/* Bottom Nav */}
                 <div className="h-16 bg-[#162024]/90 backdrop-blur-xl border-t border-white/10 flex items-center justify-around shrink-0 z-20 px-2">
-                    <button onClick={() => setTab('inbox')} className={`flex flex-col items-center gap-1 p-2 transition-all ${tab === 'inbox' ? 'text-rail-primary drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]' : 'text-slate-500 hover:text-slate-300'}`}>
+                    <button onClick={() => setTab('inbox')} className={`flex flex-col items-center gap-1 p-2 transition-all ${tab === 'inbox' ? 'text-quantix-purple drop-shadow-[0_0_8px_rgba(37,192,244,0.5)]' : 'text-slate-500 hover:text-slate-300'}`}>
                         <span className="material-symbols-outlined">inbox</span>
                         <span className="text-[10px] font-medium">Tasks</span>
                     </button>
-                    <button onClick={() => setTab('scanner')} className="size-14 -mt-8 bg-gradient-to-br from-rail-primary to-[#1a9cc9] rounded-full flex items-center justify-center text-black shadow-[0_4px_20px_rgba(37,192,244,0.5),0_0_30px_rgba(37,192,244,0.3)] border-4 border-[#101e22] hover:scale-105 transition-transform">
+                    <button onClick={() => setTab('scanner')} className="size-14 -mt-8 bg-gradient-to-br from-quantix-purple to-[#1a9cc9] rounded-full flex items-center justify-center text-black shadow-[0_4px_20px_rgba(37,192,244,0.5),0_0_30px_rgba(37,192,244,0.3)] border-4 border-[#101e22] hover:scale-105 transition-transform">
                         <span className="material-symbols-outlined text-2xl">qr_code_scanner</span>
                     </button>
                     <button className="flex flex-col items-center gap-1 p-2 text-slate-500 hover:text-slate-300 transition-all">
