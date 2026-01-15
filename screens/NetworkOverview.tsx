@@ -1,5 +1,6 @@
 import React from 'react';
 import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
+import { InteractiveMap } from '../components/InteractiveMap';
 
 const data = [
   { v: 10 }, { v: 15 }, { v: 12 }, { v: 20 }, { v: 30 }, { v: 25 }, { v: 40 }, { v: 35 }, { v: 50 }, { v: 45 }
@@ -65,47 +66,13 @@ export const NetworkOverview = () => {
         </div>
       </div>
 
-      {/* Center: Map */}
-      <div className="col-span-6 bg-[#050910] relative overflow-hidden group">
-         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen" 
-          style={{backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyc40qarNFYr7Nn_IZudrfPlfX5tRc_4MjEXM-s458pFebMLue_GXsLUgGJvxGhJ1_znMrJrBFcL23ICxHZ5iPc_fApys1m0F-2HLErrLJW9ld48DIH7uaWzpch5V13f9384069FZ6Cm2E2nnMc1_Z5S390g0E4OdYy2FJB_39ziozBv_tz2VaYYSAoKYORxptI_7jSCbfRmY-ypaKWimbXypWLsPYZduXyYsKmccY--4QXSpJbGjz6zD-GFro62MqNyCEI13wpwA')`}}
-         />
-         <div className="absolute inset-0 bg-[linear-gradient(rgba(37,192,244,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(37,192,244,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-         
-         {/* Map Overlay SVG */}
-         <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            <path d="M 100 400 Q 250 200 400 300 T 800 200" fill="none" stroke="#258cf4" strokeWidth="3" className="drop-shadow-[0_0_5px_rgba(37,140,244,0.5)]" />
-            <path d="M 200 600 C 300 500 400 400 500 300 S 700 100 900 150" fill="none" stroke="#8b5cf6" strokeWidth="3" className="opacity-80" />
-            <path d="M 300 100 L 400 300 L 500 600" fill="none" stroke="#ef4444" strokeWidth="3" className="opacity-90" />
-            
-            {/* Station Node */}
-            <g transform="translate(400, 300)">
-               <circle r="6" fill="#111" stroke="white" strokeWidth="2" className="animate-pulse" />
-               <text x="15" y="5" fill="white" fontSize="10" fontWeight="bold" fontFamily="Inter" opacity="0.8">CENTRAL STN</text>
-            </g>
-
-             {/* Train Dot */}
-             <circle r="4" fill="#00e5ff" className="drop-shadow-[0_0_8px_#00e5ff]">
-               <animateMotion dur="20s" repeatCount="indefinite" path="M 100 400 Q 250 200 400 300 T 800 200" />
-             </circle>
-             {/* Problem Dot */}
-             <circle cx="450" cy="450" r="4" fill="#ef4444" className="animate-ping" />
-         </svg>
-
-         {/* Bottom Controls */}
-         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
-            <div className="glass rounded-xl p-3 flex items-center gap-4 border border-quantix-border/50 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-               <button className="size-9 rounded-full bg-gradient-to-br from-quantix-purple to-[#1a9cc9] text-black flex items-center justify-center hover:scale-105 transition shadow-[0_0_15px_rgba(37,192,244,0.4)]">
-                 <span className="material-symbols-outlined">play_arrow</span>
-               </button>
-               <div className="flex-1 relative h-1.5 bg-white/10 rounded-full backdrop-blur-sm">
-                  <div className="absolute left-0 top-0 bottom-0 w-[85%] bg-gradient-to-r from-quantix-purple to-[#1a9cc9] rounded-full shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
-                  <div className="absolute left-[85%] top-1/2 -translate-y-1/2 size-4 bg-white rounded-full shadow-[0_0_12px_white] ring-2 ring-quantix-purple/30"></div>
-               </div>
-               <span className="text-xs font-mono text-white px-2 py-1 bg-rail-success/20 rounded border border-rail-success/30 animate-pulse">LIVE</span>
-            </div>
-         </div>
+      {/* Center: Interactive Map */}
+      <div className="col-span-6 relative overflow-hidden">
+        <InteractiveMap
+          onStationClick={(station) => {
+            console.log('Station clicked:', station);
+          }}
+        />
       </div>
 
       {/* Right: Stats */}
