@@ -2,38 +2,49 @@ import React from 'react';
 
 export const IncidentCommand = () => {
   return (
-    <div className="flex h-full">
+    <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
       {/* Feed */}
-      <aside className="w-80 bg-[#0f172a]/90 backdrop-blur-xl border-r border-white/10 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.3)]">
-        <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
-            <h2 className="text-lg font-bold text-white">Incident Feed</h2>
+      <aside className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-r border-quantix-border/50 flex flex-col">
+        <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
+            <h2 className="text-sm font-bold uppercase flex items-center gap-2">
+              <span className="material-symbols-outlined text-rail-danger animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">campaign</span>
+              Incident Feed
+            </h2>
             <div className="relative mt-2">
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
                 <input className="w-full glass-input rounded-lg text-sm py-2 pl-10" placeholder="Search..." />
             </div>
         </div>
         <div className="flex-1 overflow-y-auto p-3 space-y-2">
-            <div className="p-3 bg-white/5 backdrop-blur-sm border-l-4 border-rail-danger rounded-xl cursor-pointer hover:bg-white/10 transition-all group shadow-[0_0_20px_rgba(239,68,68,0.1)]">
-                <div className="flex justify-between mb-1">
+            <div className={`p-3 rounded-xl backdrop-blur-sm border-l-2 transition-all duration-200 cursor-pointer group ${
+              'bg-rail-danger/10 border-rail-danger hover:bg-rail-danger/15 hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]'
+            }`}>
+                <div className="flex justify-between items-start mb-1">
                     <span className="text-[10px] font-bold bg-rail-danger text-black px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(239,68,68,0.4)]">P1</span>
                     <span className="text-[10px] font-mono text-slate-400">00:14:22</span>
                 </div>
-                <h3 className="text-sm font-bold text-white group-hover:text-quantix-purple transition-colors">Power Loss at Station 4</h3>
-                <p className="text-xs text-slate-400 mt-1">Blue Line • Electrical</p>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Power Loss at Station 4</h3>
+                <div className="flex justify-between items-center">
+                   <span className="text-[10px] text-slate-500 uppercase">Blue Line • Electrical</span>
+                   <span className="text-[10px] font-bold text-rail-danger">Dispatched</span>
+                </div>
             </div>
-             <div className="p-3 backdrop-blur-sm border border-white/10 rounded-xl opacity-60 hover:opacity-100 cursor-pointer transition-all hover:bg-white/5">
-                <div className="flex justify-between mb-1">
+             <div className="p-3 rounded-xl backdrop-blur-sm border-l-2 bg-rail-warning/10 border-rail-warning hover:bg-rail-warning/15 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-200 cursor-pointer group opacity-80">
+                <div className="flex justify-between items-start mb-1">
                     <span className="text-[10px] font-bold bg-rail-warning text-black px-1.5 py-0.5 rounded">P2</span>
                     <span className="text-[10px] font-mono text-slate-400">00:45:12</span>
                 </div>
-                <h3 className="text-sm font-bold text-slate-200">Signal Delay - Sector 7</h3>
-                <p className="text-xs text-slate-400 mt-1">Green Line • Signaling</p>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Signal Delay - Sector 7</h3>
+                <div className="flex justify-between items-center">
+                   <span className="text-[10px] text-slate-500 uppercase">Green Line • Signaling</span>
+                   <span className="text-[10px] font-bold text-rail-warning">Investigating</span>
+                </div>
             </div>
         </div>
       </aside>
 
       {/* Main Context */}
-      <section className="flex-1 bg-[#020617] flex flex-col relative overflow-hidden">
+      <section className="col-span-6 bg-[#050910] relative overflow-hidden flex flex-col">
          <div className="p-6 pb-2">
             <div className="flex justify-between items-start">
                 <div>
@@ -127,9 +138,12 @@ export const IncidentCommand = () => {
       </section>
 
       {/* Right Sidebar: Playbook */}
-      <aside className="w-80 border-l border-white/10 bg-[#0f172a]/90 backdrop-blur-xl flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.3)]">
-          <div className="p-4 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">SOP Playbook</h2>
+      <aside className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
+          <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
+              <h2 className="text-xs font-bold text-slate-400 uppercase mb-4 flex items-center gap-2">
+                <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
+                SOP Playbook
+              </h2>
               <div className="space-y-3">
                   <div className="p-3 bg-rail-success/10 backdrop-blur-sm border border-rail-success/30 rounded-xl flex gap-3 opacity-60">
                       <div className="bg-rail-success text-black size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.4)]">
@@ -139,9 +153,9 @@ export const IncidentCommand = () => {
                           <h4 className="text-sm font-bold text-rail-success line-through">Verify Visuals</h4>
                       </div>
                   </div>
-                   <div className="p-4 bg-quantix-purple/10 backdrop-blur-sm border border-quantix-purple/40 rounded-xl flex flex-col gap-3 shadow-[0_0_20px_rgba(37,192,244,0.15)] animate-glow-pulse">
+                   <div className="p-4 bg-quantix-purple/10 backdrop-blur-sm border border-quantix-purple/40 rounded-xl flex flex-col gap-3 shadow-[0_0_20px_rgba(46,92,255,0.15)] animate-glow-pulse">
                       <div className="flex gap-3">
-                        <div className="border-2 border-quantix-purple text-quantix-purple size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(37,192,244,0.3)]">
+                        <div className="border-2 border-quantix-purple text-quantix-purple size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(46,92,255,0.3)]">
                             <div className="size-2.5 bg-quantix-purple rounded-sm"></div>
                         </div>
                         <div>
@@ -154,8 +168,8 @@ export const IncidentCommand = () => {
               </div>
           </div>
           <div className="flex-1 flex flex-col justify-end p-4">
-               <div className="h-48 glass-card rounded-xl flex flex-col overflow-hidden">
-                   <div className="p-3 border-b border-white/10 flex justify-between items-center bg-white/5">
+               <div className="glass-card flex-1 rounded-xl flex flex-col overflow-hidden">
+                   <div className="p-3 border-b border-quantix-border/50 flex justify-between items-center bg-rail-panel/60">
                        <span className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
                          <span className="w-1 h-3 bg-rail-success rounded-full"></span>
                          Comm Log
@@ -168,7 +182,7 @@ export const IncidentCommand = () => {
                            <p className="text-xs text-slate-300">Team arriving at substation in 2 mins.</p>
                        </div>
                    </div>
-                   <div className="p-3 border-t border-white/10">
+                   <div className="p-3 border-t border-quantix-border/50">
                        <input className="w-full glass-input rounded-lg text-xs py-2 px-3" placeholder="Type message..." />
                    </div>
                </div>
