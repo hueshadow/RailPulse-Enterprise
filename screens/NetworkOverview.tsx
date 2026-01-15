@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
 
 const data = [
@@ -11,9 +11,87 @@ const incidents = [
   { id: 'P4', time: '09:15 AM', title: 'Maintenance Scheduled', loc: 'Line A • Overnight', status: 'Planned', priority: 'P4' },
 ];
 
+// Dashboard Hierarchy Tabs
+const dashboardTabs = [
+  { id: 'realtime', label: '实时监控', icon: 'speed', description: 'Real-time Monitoring' },
+  { id: 'operations', label: '运营状态', icon: 'settings', description: 'Operations Status' },
+  { id: 'incidents', label: '事件管理', icon: 'warning', description: 'Incident Management' },
+  { id: 'analytics', label: '分析预测', icon: 'analytics', description: 'Analytics & Forecast' },
+];
+
+// Sub-tabs for each hierarchy level
+const subTabs: Record<string, { id: string; label: string; icon: string }[]> = {
+  realtime: [
+    { id: 'overview', label: '网络概览', icon: 'dashboard' },
+    { id: 'tracking', label: '列车追踪', icon: 'train' },
+    { id: 'ridership', label: '实时客流', icon: 'groups' },
+  ],
+  operations: [
+    { id: 'lines', label: '线路状态', icon: 'alt_route' },
+    { id: 'equipment', label: '设备健康', icon: 'sensors' },
+    { id: 'energy', label: '能耗监控', icon: 'bolt' },
+  ],
+  incidents: [
+    { id: 'feed', label: '事件列表', icon: 'notifications_active' },
+    { id: 'response', label: '应急响应', icon: 'emergency' },
+    { id: 'workorders', label: '工单管理', icon: 'assignment' },
+  ],
+  analytics: [
+    { id: 'delays', label: '延误分析', icon: 'schedule' },
+    { id: 'forecast', label: '客流预测', icon: 'trending_up' },
+    { id: 'reports', label: '绩效报告', icon: 'assessment' },
+  ],
+};
+
 export const NetworkOverview = () => {
+  const [activeTab, setActiveTab] = useState('realtime');
+  const [activeSubTab, setActiveSubTab] = useState('overview');
+
   return (
     <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
+      {/* Hierarchy Navigation Bar */}
+      <div className="col-span-12 bg-quantix-black/90 backdrop-blur-md border-b border-quantix-border/50">
+        <div className="flex flex-col">
+          {/* Level 1: Main Hierarchy */}
+          <div className="flex items-center px-4 py-2 gap-1">
+            {dashboardTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => { setActiveTab(tab.id); setActiveSubTab(subTabs[tab.id][0].id); }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-quantix-purple/20 to-cyan-500/10 text-quantix-purple border border-quantix-purple/30 shadow-[0_0_15px_rgba(46,92,255,0.2)]'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span className={`material-symbols-outlined text-[18px] ${activeTab === tab.id ? 'drop-shadow-[0_0_8px_rgba(46,92,255,0.5)]' : ''}`}>{tab.icon}</span>
+                <span className="text-sm font-medium">{tab.label}</span>
+                <span className="text-[10px] text-slate-500 ml-1">{tab.description}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Level 2: Sub Hierarchy */}
+          <div className="flex items-center px-4 pb-2 gap-1 border-t border-quantix-border/30 mt-1">
+            <span className="material-symbols-outlined text-slate-600 text-[16px] mx-2">subdirectory_arrow_right</span>
+            {subTabs[activeTab].map((subTab) => (
+              <button
+                key={subTab.id}
+                onClick={() => setActiveSubTab(subTab.id)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all duration-200 ${
+                  activeSubTab === subTab.id
+                    ? 'bg-white/10 text-cyan-400 border border-cyan-500/30'
+                    : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
+                }`}
+              >
+                <span className="material-symbols-outlined text-[16px]">{subTab.icon}</span>
+                <span className="text-xs font-medium">{subTab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Left Sidebar: Incidents */}
       <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm flex flex-col border-r border-quantix-border/50">
         <div className="p-4 border-b border-quantix-border/50 flex justify-between items-center bg-rail-panel/60 backdrop-blur-sm">
