@@ -40,6 +40,39 @@ export const IncidentCommand = () => {
                 <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Signal Delay - Sector 7</h3>
                 <p className="text-[10px] text-slate-500 uppercase">Green Line • Signaling</p>
             </div>
+             {/* Additional Incidents */}
+             <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-success/5 border-rail-success hover:bg-rail-success/10 transition-all duration-200 cursor-pointer group">
+                <div className="flex justify-between items-start mb-1">
+                    <span className="text-[10px] font-bold bg-rail-success text-black px-1.5 py-0.5 rounded">P3</span>
+                    <span className="text-[10px] font-mono text-slate-500">01:23:45</span>
+                </div>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">HVAC Maintenance</h3>
+                <p className="text-[10px] text-slate-500 uppercase">Central Station • Equipment</p>
+            </div>
+             <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-success/5 border-rail-success hover:bg-rail-success/10 transition-all duration-200 cursor-pointer group">
+                <div className="flex justify-between items-start mb-1">
+                    <span className="text-[10px] font-bold bg-rail-success text-black px-1.5 py-0.5 rounded">P3</span>
+                    <span className="text-[10px] font-mono text-slate-500">02:15:30</span>
+                </div>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Ticket Gate Calibration</h3>
+                <p className="text-[10px] text-slate-500 uppercase">North Gate • Systems</p>
+            </div>
+             <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-success/5 border-rail-success hover:bg-rail-success/10 transition-all duration-200 cursor-pointer group">
+                <div className="flex justify-between items-start mb-1">
+                    <span className="text-[10px] font-bold bg-rail-success text-black px-1.5 py-0.5 rounded">P4</span>
+                    <span className="text-[10px] font-mono text-slate-500">03:45:00</span>
+                </div>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Platform Signage Update</h3>
+                <p className="text-[10px] text-slate-500 uppercase">West Terminal • Planned</p>
+            </div>
+             <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-success/5 border-rail-success hover:bg-rail-success/10 transition-all duration-200 cursor-pointer group">
+                <div className="flex justify-between items-start mb-1">
+                    <span className="text-[10px] font-bold bg-rail-success text-black px-1.5 py-0.5 rounded">P4</span>
+                    <span className="text-[10px] font-mono text-slate-500">04:12:18</span>
+                </div>
+                <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Cleaning Schedule</h3>
+                <p className="text-[10px] text-slate-500 uppercase">Blue Line Depot • Routine</p>
+            </div>
         </div>
       </aside>
 
