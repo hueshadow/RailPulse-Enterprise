@@ -25,11 +25,11 @@ const NavItem = ({
     onClick={onClick}
     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 mb-1 relative ${
       active
-        ? 'text-quantix-purple bg-[#2A3347]'
-        : 'text-slate-400 hover:text-white hover:bg-[#2A3347]'
+        ? 'text-quantix-purple bg-white/5'
+        : 'text-slate-400 hover:text-white hover:bg-white/5'
     }`}
   >
-    {active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-quantix-purple rounded-r"></span>}
+    {active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-quantix-purple rounded-r shadow-[0_0_8px_rgba(37,192,244,0.5)]"></span>}
     <span className="material-symbols-outlined text-[20px]">{icon}</span>
     <span className="text-sm font-medium">{label}</span>
   </button>
@@ -50,9 +50,9 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
 
       {/* Sidebar */}
       <aside
-        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 flex flex-col transition-all duration-300 z-50 bg-[#1A1F2E]`}
+        className={`${sidebarOpen ? 'w-64' : 'w-16'} flex-shrink-0 flex flex-col transition-all duration-300 z-50 bg-quantix-black/80 backdrop-blur-sm border-r border-quantix-border/50`}
       >
-        <div className="h-16 flex items-center px-4 border-b border-white/5 bg-gradient-to-r from-quantix-purple/10 to-transparent">
+        <div className="h-16 flex items-center px-4 border-b border-white/10 bg-white/5 backdrop-blur-sm">
           <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
             <div className="min-w-[32px] h-8 flex items-center justify-center bg-gradient-to-br from-quantix-purple to-cyan-400 rounded text-black font-bold shadow-[0_0_20px_rgba(46,92,255,0.4)]">
               <span className="material-symbols-outlined">train</span>
@@ -80,10 +80,10 @@ export const Layout: React.FC<LayoutProps> = ({ currentScreen, onScreenChange, c
           <NavItem active={currentScreen === 'field-service'} icon="smartphone" label={sidebarOpen ? t('nav.fieldService') : ""} onClick={() => onScreenChange('field-service')} />
         </nav>
 
-        <div className="p-3 border-t border-white/5">
+        <div className="p-3 border-t border-white/10 bg-white/5 backdrop-blur-sm">
            <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-full flex items-center justify-center p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all"
+            className="w-full flex items-center justify-center p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all"
           >
             <span className="material-symbols-outlined">{sidebarOpen ? 'chevron_left' : 'chevron_right'}</span>
            </button>
