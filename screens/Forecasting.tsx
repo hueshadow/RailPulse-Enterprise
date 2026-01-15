@@ -9,9 +9,9 @@ const forecastData = [
 
 export const Forecasting = () => {
     return (
-        <div className="flex h-full">
+        <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
             {/* Main Charts Area */}
-            <div className="flex-1 p-6 overflow-y-auto space-y-6">
+            <div className="col-span-9 p-4 overflow-y-auto space-y-4 bg-[#050910]">
                  {/* Top Controls */}
                  <div className="flex justify-between items-end">
                      <div>
@@ -116,15 +116,15 @@ export const Forecasting = () => {
             </div>
 
             {/* Recommendations Panel */}
-            <div className="w-[400px] border-l border-white/10 bg-[#0f172a]/90 backdrop-blur-xl flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.3)]">
-                <div className="p-6 border-b border-white/10 bg-gradient-to-r from-quantix-purple/5 to-transparent">
+            <div className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
+                <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
                     <h2 className="text-lg font-bold text-white flex items-center gap-2">
                       <span className="material-symbols-outlined text-quantix-purple">auto_awesome</span>
                       AI Recommendations
                     </h2>
                     <p className="text-xs text-slate-400 mt-1">Based on: <span className="text-quantix-purple font-medium">Major Sport Event</span></p>
                 </div>
-                <div className="p-6 space-y-4 overflow-y-auto">
+                <div className="p-4 space-y-4 overflow-y-auto">
                     {/* Rec Card 1 */}
                     <div className="glass-card-warning rounded-xl p-4 hover:shadow-[0_0_25px_rgba(245,158,11,0.15)] transition-all group cursor-pointer">
                         <div className="flex justify-between mb-2">

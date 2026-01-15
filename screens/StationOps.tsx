@@ -170,20 +170,23 @@ export const StationOps = () => {
                  </div>
 
                  {/* Map */}
-                 <div className="flex-1 relative overflow-hidden flex items-center justify-center">
-                     <div
-                        className="w-[90%] h-[90%] rounded-xl border border-white/10 bg-cover bg-center opacity-80 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
-                        style={{
-                            backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuDk6uN4kX4BYkQNYgzTu92c48sm6cZZlDkItUCYX-nsHBz8TtlK4kz5Y9SFQD5lmErfagY8OzczBeXyU7HRQROov58BQoZvAa0iHLQo3awLO499G6Z88g7Id4IsbGEjC6mcpdrqxYcwK2EsjBqh9pgxWxcKm9mp-j28TcFMQPCwoQVzAVOUKP2_BkTMjOpTnsz9Ti8qJ1uMirKr4WoEZwcyB25myE0DqqfS6tU_dpk0eVI8lF7EPSEMDEysx09PmFC__qvSZkclbhc')`,
-                            filter: 'hue-rotate(190deg) contrast(1.2) saturate(1.5)'
-                        }}
-                     >
-                         <div className="absolute top-1/3 right-1/4 flex flex-col items-center">
-                             <div className="size-7 bg-rail-warning rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.7)] animate-bounce">
-                                 <span className="material-symbols-outlined text-[16px] text-black font-bold">priority_high</span>
-                             </div>
-                             <div className="mt-2 glass px-3 py-1.5 rounded-lg text-xs text-white font-medium">Congestion</div>
+                 <div className="flex-1 relative overflow-hidden flex items-center justify-center p-4">
+                     <img
+                        src="/station-plan.svg"
+                        alt="Station Floor Plan"
+                        className="w-full h-full object-contain rounded-xl"
+                     />
+                     {/* Station zones overlay */}
+                     <div className="absolute top-[20%] left-[25%] flex flex-col items-center">
+                         <div className="size-6 bg-rail-success rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.6)] animate-pulse">
+                             <span className="material-symbols-outlined text-[14px] text-white">person</span>
                          </div>
+                     </div>
+                     <div className="absolute bottom-[25%] right-[20%] flex flex-col items-center">
+                         <div className="size-6 bg-rail-warning rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.6)] animate-pulse">
+                             <span className="material-symbols-outlined text-[14px] text-white">warning</span>
+                         </div>
+                         <div className="mt-2 glass px-3 py-1.5 rounded-lg text-xs text-white font-medium">Congestion</div>
                      </div>
                  </div>
             </div>
