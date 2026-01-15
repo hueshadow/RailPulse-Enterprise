@@ -98,24 +98,22 @@ export const IncidentCommand = () => {
 
          {/* Timeline */}
          <div className="px-6 py-4">
-             <div className="relative">
-                 <div className="absolute top-1/2 w-full h-0.5 bg-white/10 -translate-y-1/2"></div>
-                 <div className="relative z-10 flex justify-between">
-                     {['Detect', 'Confirm', 'Classify', 'Dispatch', 'Resolve', 'Review'].map((step, i) => (
-                         <div key={step} className={`flex flex-col items-center gap-2 transition-all ${i < 3 ? 'opacity-100' : 'opacity-40'}`}>
-                             <div className={`size-10 rounded-full flex items-center justify-center border-2 transition-all ${
-                               i === 2
-                                 ? 'bg-quantix-purple text-black border-quantix-purple shadow-[0_0_25px_rgba(37,192,244,0.6)] scale-125 animate-glow-pulse'
-                                 : i < 2
-                                   ? 'bg-rail-success/20 text-rail-success border-rail-success shadow-[0_0_10px_rgba(16,185,129,0.3)]'
-                                   : 'bg-slate-800/80 backdrop-blur-sm border-slate-600 text-slate-400'
-                             }`}>
-                                 <span className="material-symbols-outlined text-[18px]">{i < 2 ? 'check' : i === 2 ? 'radar' : 'pending'}</span>
-                             </div>
-                             <span className={`text-[10px] font-bold uppercase tracking-wider ${i === 2 ? 'text-quantix-purple' : i < 2 ? 'text-rail-success' : 'text-slate-500'}`}>{step}</span>
+             <div className="relative flex items-center justify-between h-10">
+                 <div className="absolute left-0 right-0 h-0.5 bg-white/10 top-1/2 -translate-y-1/2"></div>
+                 {['Detect', 'Confirm', 'Classify', 'Dispatch', 'Resolve', 'Review'].map((step, i) => (
+                     <div key={step} className={`relative flex flex-col items-center transition-all ${i < 3 ? 'opacity-100' : 'opacity-40'}`}>
+                         <div className={`size-10 rounded-full flex items-center justify-center border-2 transition-all ${
+                           i === 2
+                             ? 'bg-quantix-purple text-black border-quantix-purple shadow-[0_0_25px_rgba(37,192,244,0.6)] scale-125 animate-glow-pulse'
+                             : i < 2
+                               ? 'bg-rail-success/20 text-rail-success border-rail-success shadow-[0_0_10px_rgba(16,185,129,0.3)]'
+                               : 'bg-slate-800/80 backdrop-blur-sm border-slate-600 text-slate-400'
+                         }`}>
+                             <span className="material-symbols-outlined text-[18px]">{i < 2 ? 'check' : i === 2 ? 'radar' : 'pending'}</span>
                          </div>
-                     ))}
-                 </div>
+                         <span className={`absolute -bottom-5 text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${i === 2 ? 'text-quantix-purple' : i < 2 ? 'text-rail-success' : 'text-slate-500'}`}>{step}</span>
+                     </div>
+                 ))}
              </div>
          </div>
 
@@ -159,11 +157,11 @@ export const IncidentCommand = () => {
                  </div>
                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-danger rounded-full mt-1.5 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-danger rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:42:05</span>
                                  <span className="text-[10px] uppercase border border-rail-danger text-rail-danger px-1.5 py-0.5 rounded">Alert</span>
@@ -172,10 +170,10 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                       <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-quantix-purple rounded-full shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:43:12</span>
                                  <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
@@ -186,11 +184,11 @@ export const IncidentCommand = () => {
                      </div>
                      {/* Additional Audit Trail Entries */}
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-warning rounded-full mt-1.5 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-warning rounded-full shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:44:30</span>
                                  <span className="text-[10px] uppercase bg-rail-warning/15 text-rail-warning px-1.5 py-0.5 rounded border border-rail-warning/30">Dispatch</span>
@@ -199,11 +197,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-success rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:46:15</span>
                                  <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
@@ -212,11 +210,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-success rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:48:42</span>
                                  <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
@@ -225,11 +223,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-quantix-purple rounded-full shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:50:18</span>
                                  <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
@@ -239,11 +237,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-warning rounded-full mt-1.5 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-warning rounded-full shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:52:55</span>
                                  <span className="text-[10px] uppercase bg-rail-warning/15 text-rail-warning px-1.5 py-0.5 rounded border border-rail-warning/30">Alert</span>
@@ -252,11 +250,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-success rounded-full mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-success rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:55:30</span>
                                  <span className="text-[10px] uppercase bg-rail-success/15 text-rail-success px-1.5 py-0.5 rounded border border-rail-success/30">Update</span>
@@ -265,11 +263,11 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-quantix-purple rounded-full mt-1.5 shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
-                             <div className="w-px h-full bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-quantix-purple rounded-full shadow-[0_0_8px_rgba(37,192,244,0.5)]"></div>
+                             <div className="w-px flex-1 bg-white/10"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">10:58:12</span>
                                  <span className="text-[10px] uppercase bg-quantix-purple/15 text-quantix-purple px-1.5 py-0.5 rounded border border-quantix-purple/30">User</span>
@@ -279,11 +277,10 @@ export const IncidentCommand = () => {
                          </div>
                      </div>
                      <div className="flex gap-3">
-                         <div className="flex flex-col items-center">
-                             <div className="size-2.5 bg-rail-danger rounded-full mt-1.5 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-                             <div className="w-px h-4 bg-white/10 my-1"></div>
+                         <div className="flex flex-col items-center pt-1">
+                             <div className="size-2.5 bg-rail-danger rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
                          </div>
-                         <div>
+                         <div className="pt-1">
                              <div className="flex items-center gap-2">
                                  <span className="text-xs font-mono text-slate-500">11:00:45</span>
                                  <span className="text-[10px] uppercase border border-rail-danger text-rail-danger px-1.5 py-0.5 rounded">Alert</span>
