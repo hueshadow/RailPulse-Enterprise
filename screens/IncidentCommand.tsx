@@ -2,50 +2,41 @@ import React from 'react';
 
 export const IncidentCommand = () => {
   return (
-    <div className="grid grid-cols-12 h-full gap-px bg-quantix-border/50">
+    <div className="flex h-full bg-[#050910]">
       {/* Feed */}
-      <aside className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-r border-quantix-border/50 flex flex-col">
-        <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
-            <h2 className="text-sm font-bold uppercase flex items-center gap-2">
-              <span className="material-symbols-outlined text-rail-danger animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">campaign</span>
+      <aside className="glass-card rounded-xl flex flex-col overflow-hidden m-4 mr-0">
+        <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
+            <h2 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
+              <span className="w-1 h-3 bg-rail-danger rounded-full animate-pulse"></span>
               Incident Feed
             </h2>
-            <div className="relative mt-2">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
-                <input className="w-full glass-input rounded-lg text-sm py-2 pl-10" placeholder="Search..." />
-            </div>
+            <button className="text-xs text-slate-400 hover:text-white transition-colors px-2 py-1 rounded hover:bg-white/5">
+              <span className="material-symbols-outlined">filter_list</span>
+            </button>
         </div>
         <div className="flex-1 overflow-y-auto p-3 space-y-2">
-            <div className={`p-3 rounded-xl backdrop-blur-sm border-l-2 transition-all duration-200 cursor-pointer group ${
-              'bg-rail-danger/10 border-rail-danger hover:bg-rail-danger/15 hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]'
-            }`}>
+            <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-danger/10 border-rail-danger hover:bg-rail-danger/15 transition-all duration-200 cursor-pointer group">
                 <div className="flex justify-between items-start mb-1">
                     <span className="text-[10px] font-bold bg-rail-danger text-black px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(239,68,68,0.4)]">P1</span>
-                    <span className="text-[10px] font-mono text-slate-400">00:14:22</span>
+                    <span className="text-[10px] font-mono text-slate-500">00:14:22</span>
                 </div>
                 <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Power Loss at Station 4</h3>
-                <div className="flex justify-between items-center">
-                   <span className="text-[10px] text-slate-500 uppercase">Blue Line • Electrical</span>
-                   <span className="text-[10px] font-bold text-rail-danger">Dispatched</span>
-                </div>
+                <p className="text-[10px] text-slate-500 uppercase">Blue Line • Electrical</p>
             </div>
-             <div className="p-3 rounded-xl backdrop-blur-sm border-l-2 bg-rail-warning/10 border-rail-warning hover:bg-rail-warning/15 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-200 cursor-pointer group opacity-80">
+             <div className="p-3 rounded-lg backdrop-blur-sm border-l-2 bg-rail-warning/10 border-rail-warning hover:bg-rail-warning/15 transition-all duration-200 cursor-pointer group opacity-80">
                 <div className="flex justify-between items-start mb-1">
                     <span className="text-[10px] font-bold bg-rail-warning text-black px-1.5 py-0.5 rounded">P2</span>
-                    <span className="text-[10px] font-mono text-slate-400">00:45:12</span>
+                    <span className="text-[10px] font-mono text-slate-500">00:45:12</span>
                 </div>
                 <h3 className="text-sm font-medium text-white leading-tight mb-1 group-hover:text-quantix-purple transition-colors">Signal Delay - Sector 7</h3>
-                <div className="flex justify-between items-center">
-                   <span className="text-[10px] text-slate-500 uppercase">Green Line • Signaling</span>
-                   <span className="text-[10px] font-bold text-rail-warning">Investigating</span>
-                </div>
+                <p className="text-[10px] text-slate-500 uppercase">Green Line • Signaling</p>
             </div>
         </div>
       </aside>
 
       {/* Main Context */}
-      <section className="col-span-6 bg-[#050910] relative overflow-hidden flex flex-col">
-         <div className="p-6 pb-2">
+      <section className="flex-1 relative overflow-hidden flex flex-col p-4">
+         <div className="pr-4">
             <div className="flex justify-between items-start">
                 <div>
                     <div className="flex items-center gap-2 mb-2">
@@ -138,54 +129,55 @@ export const IncidentCommand = () => {
       </section>
 
       {/* Right Sidebar: Playbook */}
-      <aside className="col-span-3 bg-quantix-black/80 backdrop-blur-sm border-l border-quantix-border/50 flex flex-col">
-          <div className="p-4 border-b border-quantix-border/50 bg-rail-panel/60 backdrop-blur-sm">
-              <h2 className="text-xs font-bold text-slate-400 uppercase mb-4 flex items-center gap-2">
+      <aside className="glass-card rounded-xl flex flex-col overflow-hidden m-4 ml-0">
+          <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-sm flex justify-between items-center">
+              <h2 className="text-xs font-bold uppercase text-slate-300 flex items-center gap-2">
                 <span className="w-1 h-3 bg-quantix-purple rounded-full"></span>
                 SOP Playbook
               </h2>
-              <div className="space-y-3">
-                  <div className="p-3 bg-rail-success/10 backdrop-blur-sm border border-rail-success/30 rounded-xl flex gap-3 opacity-60">
-                      <div className="bg-rail-success text-black size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.4)]">
-                          <span className="material-symbols-outlined text-sm">check</span>
-                      </div>
-                      <div>
-                          <h4 className="text-sm font-bold text-rail-success line-through">Verify Visuals</h4>
-                      </div>
+              <button className="text-xs text-slate-400 hover:text-white transition-colors px-2 py-1 rounded hover:bg-white/5">
+                <span className="material-symbols-outlined">expand_content</span>
+              </button>
+          </div>
+          <div className="flex-1 overflow-y-auto p-3 space-y-2">
+              <div className="p-3 bg-rail-success/10 backdrop-blur-sm border border-rail-success/30 rounded-lg flex gap-3 opacity-60">
+                  <div className="bg-rail-success text-black size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.4)]">
+                      <span className="material-symbols-outlined text-sm">check</span>
                   </div>
-                   <div className="p-4 bg-quantix-purple/10 backdrop-blur-sm border border-quantix-purple/40 rounded-xl flex flex-col gap-3 shadow-[0_0_20px_rgba(46,92,255,0.15)] animate-glow-pulse">
-                      <div className="flex gap-3">
-                        <div className="border-2 border-quantix-purple text-quantix-purple size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(46,92,255,0.3)]">
-                            <div className="size-2.5 bg-quantix-purple rounded-sm"></div>
-                        </div>
-                        <div>
-                            <h4 className="text-sm font-bold text-white">Isolate Power</h4>
-                            <p className="text-xs text-slate-400">Remotely cut power to Sector 4B track.</p>
-                        </div>
-                      </div>
-                      <button className="w-full glass-button-solid text-xs font-bold py-2.5 rounded-lg">Execute Command</button>
+                  <div>
+                      <h4 className="text-sm font-bold text-rail-success line-through">Verify Visuals</h4>
                   </div>
               </div>
+               <div className="p-4 bg-quantix-purple/10 backdrop-blur-sm border border-quantix-purple/40 rounded-lg flex flex-col gap-3 shadow-[0_0_20px_rgba(46,92,255,0.15)] animate-glow-pulse">
+                  <div className="flex gap-3">
+                    <div className="border-2 border-quantix-purple text-quantix-purple size-6 rounded flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(46,92,255,0.3)]">
+                        <div className="size-2.5 bg-quantix-purple rounded-sm"></div>
+                    </div>
+                    <div>
+                        <h4 className="text-sm font-bold text-white">Isolate Power</h4>
+                        <p className="text-xs text-slate-400">Remotely cut power to Sector 4B track.</p>
+                    </div>
+                  </div>
+                  <button className="w-full glass-button-solid text-xs font-bold py-2.5 rounded-lg">Execute Command</button>
+              </div>
           </div>
-          <div className="flex-1 flex flex-col justify-end p-4">
-               <div className="glass-card flex-1 rounded-xl flex flex-col overflow-hidden">
-                   <div className="p-3 border-b border-quantix-border/50 flex justify-between items-center bg-rail-panel/60">
-                       <span className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
-                         <span className="w-1 h-3 bg-rail-success rounded-full"></span>
-                         Comm Log
-                       </span>
-                       <div className="size-2.5 bg-rail-success rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                   </div>
-                   <div className="flex-1 p-3 space-y-2 overflow-y-auto">
-                       <div className="bg-white/5 backdrop-blur-sm p-2.5 rounded-xl rounded-tl-none border border-white/5">
-                           <p className="text-[10px] text-quantix-purple font-bold">J. Doe (Site)</p>
-                           <p className="text-xs text-slate-300">Team arriving at substation in 2 mins.</p>
-                       </div>
-                   </div>
-                   <div className="p-3 border-t border-quantix-border/50">
-                       <input className="w-full glass-input rounded-lg text-xs py-2 px-3" placeholder="Type message..." />
-                   </div>
-               </div>
+          <div className="border-t border-white/10">
+              <div className="p-3 border-b border-white/10 flex justify-between items-center bg-white/5">
+                  <span className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
+                    <span className="w-1 h-3 bg-rail-success rounded-full"></span>
+                    Comm Log
+                  </span>
+                  <div className="size-2.5 bg-rail-success rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+              </div>
+              <div className="flex-1 p-3 space-y-2 max-h-40 overflow-y-auto">
+                  <div className="bg-white/5 backdrop-blur-sm p-2.5 rounded-lg rounded-tl-none border border-white/5">
+                      <p className="text-[10px] text-quantix-purple font-bold">J. Doe (Site)</p>
+                      <p className="text-xs text-slate-300">Team arriving at substation in 2 mins.</p>
+                  </div>
+              </div>
+              <div className="p-3 border-t border-white/10">
+                  <input className="w-full glass-input rounded-lg text-xs py-2 px-3" placeholder="Type message..." />
+              </div>
           </div>
       </aside>
     </div>
